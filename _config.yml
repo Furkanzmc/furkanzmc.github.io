@@ -1,0 +1,43 @@
+name: zmc.space
+description: Blogging about stuff I'm learning
+meta_description: "zmc.space, blogging about things I learn"
+
+aboutPage: true
+
+markdown: redcarpet
+highlighter: pygments
+
+gems: ['jekyll-paginate']
+paginate: 20
+baseurl: /
+domain_name: 'http://zmc.space'
+google_analytics: 'UA-71841354-1'
+disqus: true
+disqus_shortname: 'zmcspace'
+
+# Details for the RSS feed generator
+url:            'http://zmc.space'
+author:         'Furkan Üzümcü'
+authorTwitter:  'furkanzmc'
+
+permalink:       /:year/:title/
+
+defaults:
+    -
+        scope:
+            path: "" # empty string for all files
+            type: pages
+        values:
+            layout: default
+    -
+        scope:
+            path: "" # empty string for all files
+            type: posts
+        values:
+            layout: post
+    -
+        scope:
+            path: ""
+            type: drafts
+        values:
+            layout: post
