@@ -5,6 +5,8 @@ meta_description: "zmc.space, blogging about things I learn"
 aboutPage: true
 
 markdown: redcarpet
+redcarpet:
+    extensions: ["tables", "no_intra_emphasis", "tables", "autolink", "strikethrough", "with_toc_data", "prettify", "highlight", "space_after_headers", "footnotes", "with_toc_data"]
 highlighter: pygments
 
 gems: ['jekyll-paginate']
