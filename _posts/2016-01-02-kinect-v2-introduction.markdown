@@ -1,6 +1,6 @@
 ---
-title:  "Introduction to Kinect v2"
-description: "General introduction to Kinect v2"
+title:  "C++: Introduction to Kinect v2"
+description: "General introduction to Kinect v2 with C++"
 date: 2016-01-02
 ---
 
