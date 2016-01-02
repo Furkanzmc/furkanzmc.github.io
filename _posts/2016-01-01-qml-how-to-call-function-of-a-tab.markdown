@@ -10,7 +10,7 @@ like you would any other function. This is because `Tab` does not inherit from `
 
 Let's say you have the following code in your QML file.
 
-```qml
+{% highlight qml linenos %}
 TabView {
     Tab {
         id: tabOne
@@ -24,12 +24,11 @@ TabView {
         }
     }
 }
-```
+{% endhighlight %}
 
 Since `Tab` inherits `Loader`, the way you access the `myFunc` function is like this:
 
-
-```qml
+{% highlight qml linenos %}
 TabView {
     id: tabView
 
@@ -50,4 +49,4 @@ Button {
     text: "Click Me"
     onClicked: tabOne.item.myFunc()
 }
-```
+{% endhighlight %}
