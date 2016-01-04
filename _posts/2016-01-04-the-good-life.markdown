@@ -2,7 +2,7 @@
 title:  "The Good Life"
 description: "What is the right way to happiness in life?"
 date: 2016-01-04
-tags: psychology, tedx
+tags: psychology tedx
 ---
 
 With the age of seemingly overnight successes, glamorous life of celebrities and people with money it just seems like a no brainer that people would choose money and fame as a way of ultimate happiness in life. But, are they really the right choice? I recently watched a TEDx talk by `Robert Waldinger` that addresses this question. Since the 1930's, Harvard psychologists have been carrying out perhaps the longest study of human life with 724 participants. This is really one of a kind study because most of the studies that start out to be a long one gets cut out because they lose funding, or people die. But this one has lived up to be 75 years old and 60 of those 724 men are still participating in the study.
