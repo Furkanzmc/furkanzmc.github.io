@@ -51,7 +51,7 @@ Button {
 }
 {% endhighlight %}
 
-**EDIT:** [@AkiHydway][aki_twitter_link] mentioned that `Tab` must be loaded, other wise `item` will be undefined, since it inherits `Loader`. Thanks for the suggestion [@AkiHydway][aki_twitter_link]!
+**EDIT:** [@AkiHydway][aki_twitter_link] mentioned that `Tab` must be loaded, other wise `item` will be undefined, since it inherits `Loader`. And `Tab`s have lazy initialization, so it will not be loaded unless you specifically tell it to load. Thanks for the suggestion [@AkiHydway][aki_twitter_link]!
 
 
 [aki_twitter_link]: https://twitter.com/AkiHydway
