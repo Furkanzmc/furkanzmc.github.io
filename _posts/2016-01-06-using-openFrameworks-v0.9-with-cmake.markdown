@@ -1,6 +1,6 @@
 ---
 title:  "CMake: using openFrameworks v0.9 with CMake on Windows"
-description: "Introducing CMake file templates for openFrameworks v0.9"
+description: "CMake file templates for openFrameworks v0.9"
 date: 2016-01-06
 tags: c++, openFrameworks, programming
 ---
