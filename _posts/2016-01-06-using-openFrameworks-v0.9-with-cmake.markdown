@@ -5,7 +5,7 @@ date: 2016-01-06
 tags: c++, openFrameworks, programming
 ---
 
-** EDIT: ** You can get the update `ofProjectGenerator` from [here][ofproject_generator_release_link].
+**EDIT:** You can get the update `ofProjectGenerator` from [here][ofproject_generator_release_link].
 
 
 A while ago I wrote a project generator for using `QMake` with openFrameworks v0.8.4. You can find it [here][ofproject_generator_link]. When ofv0.9 came out with support for VS2015 and x64, I didn't want to use the previous version. But I also didn't want to use Visual Studio, I have a weird peeve about it. Since `QMake` doesn't have support for VS215, yet, I decided to port it to `CMake`. I didn't update the `ofProjectGenerator` to use both OF versions, `QMake` and `CMake`, but I'll do it soon. Here I'll lay out the steps to get it to work manually.
