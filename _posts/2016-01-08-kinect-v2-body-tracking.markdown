@@ -151,7 +151,7 @@ void processBodies(const unsigned int &bodyCount, IBody **bodies)
 }
 {% endhighlight %}
 
-Kinect has 3 data types for coordinate representation: `CameraSpacePoint`, `DepthSpacePoint` and `ColorSpacePoint`. You can guess what they mean. BUt keep in mind that `CameraSpacePoint` coordinate system is relative to Kinect. So, the point `0, 0, 0`, is the center of Kinect's field of view. So it will change depending on where the sensor is looking at. `DepthSpacePoint` and `CameraSpacePoint` have the origin on their top left corner.
+Kinect has 3 data types for coordinate representation: `CameraSpacePoint`, `DepthSpacePoint` and `ColorSpacePoint`. You can guess what they mean. But keep in mind that `CameraSpacePoint` coordinate system is relative to Kinect. So, the point `0, 0, 0`, is the center of Kinect's field of view. So it will change depending on where the sensor is looking at. `DepthSpacePoint` and `CameraSpacePoint` have the origin on their top left corner.
 
 As you can see clearly from the code above, we only get the positions for head and left hand. And from their positions we deduce that user has his left hand up. As you can imagine, this is a very very simple way of gesture detection. You'll need more code and sophistication as you need more complex gestures, like swipe or punch (They are not that complex but those came to mind first.).
 
