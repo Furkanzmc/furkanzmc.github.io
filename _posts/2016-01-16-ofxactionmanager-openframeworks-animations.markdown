@@ -35,6 +35,11 @@ public:
         : m_Radius(radius)
     {}
 
+    void draw()
+    {
+        ofCircle(m_Position, m_Radius);
+    }
+
 private:
     float m_Radius;
 };
@@ -58,11 +63,23 @@ private:
 {% highlight cpp linenos %}
 
 //Part of ofApp.cpp
+#include "ofxActionManager.h"
 
 ofApp::ofApp()
     : m_Circle()
 {
 
+}
+
+void ofApp::update()
+{
+    //ActionManager is a singleton class. Make sure to call update in just one place
+    ActionManager::getInstance()->update(ofGetLastFrameTime());
+}
+
+void ofApp::draw()
+{
+    m_Circle.draw();
 }
 
 void ofApp::mouseReleased(int x, int y, int button)
@@ -80,7 +97,7 @@ void ofApp::mouseReleased(int x, int y, int button)
 
 {% endhighlight %}
 
-Under the hood, `ActionTarget::runAction(Action *action)` calls `ActionManager::getInstance()->addAction(Action *action, this, false)`.
+Once you call `runAction`, the circle will move to the position with a smooth and eased animation. Under the hood, `ActionTarget::runAction(Action *action)` calls `ActionManager::getInstance()->addAction(Action *action, this, false)`. So instead of using `runAction` you can also use `ActionManager::addAction`.
 
 The main usage is the same as Cocos2dx so you can read up on actions from [here][cocos2dx_actions_link] and do the same with [ofxActionManager][ofx_action_manager_link].
 
