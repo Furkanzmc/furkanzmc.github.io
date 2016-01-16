@@ -1,5 +1,5 @@
 ---
-title:  "Making Easy Animations With ofxActionManager"
+title:  "openFrameworks: Making Easy Animations With ofxActionManager"
 description: "A port of cocos2dx action system"
 date: 2016-01-16
 tags: c++, programming, openFrameworks, animation
