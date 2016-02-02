@@ -6,4 +6,4 @@ caption_header: EdBox
 is_work: true
 ---
 [EdBox Website][edbox_link]
-[edbox_link]: https://edbox.io
+[edbox_link]: http://www.edbox.io
