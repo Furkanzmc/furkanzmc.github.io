@@ -5,5 +5,4 @@ photo: edbox.png
 caption_header: EdBox
 is_work: true
 ---
-[EdBox Website][edbox_link]
-[edbox_link]: http://www.edbox.io
+[EdBox Website](http://www.edbox.io)

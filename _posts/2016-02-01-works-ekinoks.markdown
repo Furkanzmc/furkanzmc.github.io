@@ -6,5 +6,4 @@ caption_header: Ekinoks
 caption: Mobile App
 is_work: true
 ---
-[Ekinoks on Play Store][play_Store_link]
-[play_Store_link]: https://play.google.com/store/apps/details?id=org.zerronlabs.ekinoks
+[Ekinoks on Play Store](https://play.google.com/store/apps/details?id=org.zerronlabs.ekinoks)

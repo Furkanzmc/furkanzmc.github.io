@@ -16,7 +16,7 @@ Now, building for x86 is pretty much the same, you just need to provide the x86 
 - In the build folder, right click on the Explorer window while holding to shift button to open the command prompt in that directory.
 - Once the command prompt is open, configure it with cmake
  
-{% highlight text linenos %}
+{% highlight text %}
 cmake.exe -G "Visual Studio 12 2013" -DCMAKE_PREFIX_PATH="D:/OpenCV/build;C:/Qt/Qt5.3.1/5.3/msvc2013" -DCMAKE_INSTALL_PREFIX="./install" -DBR_INSTALL_DEPENDENCIES=ON -DCMAKE_BUILD_TYPE=Release ..
 {% endhighlight %}
 
