@@ -8,5 +8,11 @@
             <a href="{{ site.baseurl }}about">About </a>
         {% endif %}
     {% endif %}
+
+    {% if page.url != "/works/" %}
+        {% if site.aboutPage %}
+            <a href="{{ site.baseurl }}works">Works </a>
+        {% endif %}
+    {% endif %}
     <a class="cta" href="{{ site.baseurl }}feed.xml">Subscribe</a>
 </nav>

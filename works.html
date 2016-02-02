@@ -1,0 +1,29 @@
+---
+layout: works_layout
+---
+
+{% include navigation.html %}
+
+<div class="container">
+	<div id="grid-gallery" class="grid-gallery">
+	<section class="grid-wrap">
+	<ul class="grid">
+		<li class="grid-sizer works-list"></li><!-- for Masonry column width -->
+		{% for post in site.posts %}
+			{% if post.is_work %}
+			<li class="works-list">
+				<figure>
+					<img src="{{ site.baseurl }}assets/images/Works/{{ post.photo }}" alt="img"/>
+					<figcaption>
+						<h3>{{ post.caption_header}}</h3>
+						<p>{{ post.content }}</p>
+					</figcaption>
+				</figure>
+			</li>
+			{% endif %}
+		{% endfor %}
+	</ul>
+	</section><!-- // grid-wrap -->
+
+	</div><!-- // grid-gallery -->
+</div>
