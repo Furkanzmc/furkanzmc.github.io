@@ -16,6 +16,10 @@
 	padding: 0;
 }
 
+li {
+    list-style: none;
+}
+
 .grid-gallery figure {
 	margin: 0;
 }
