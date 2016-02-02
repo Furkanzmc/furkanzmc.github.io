@@ -4,10 +4,8 @@ meta_description: "zmc.space, blogging about things I learn"
 
 aboutPage: true
 
-markdown: redcarpet
+markdown: kramdown
 markdown_ext:  markdown,mkdown,mkdn,mkd,md
-redcarpet:
-    extensions: ["smart", "tables", "no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript", "with_toc_data"]
 highlighter: rouge
 
 gems: ['jekyll-paginate']
