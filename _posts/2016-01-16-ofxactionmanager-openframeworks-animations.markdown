@@ -25,7 +25,7 @@ By using these base classes, you can create any number of actions you want. Coco
 
 Let's see an example in openFrameworks. Let's create a `MyCircle` class that inherits `ActionTarget`.
 
-{% highlight cpp linenos %}
+{% highlight cpp %}
 #include "ActionTarget.h"
 
 class MyCircle : public ActionTarget
