@@ -49,7 +49,7 @@ private:
 `ActionTarget` has a helper function `ActionTarget::runAction(Action *action)`. This function takes the action its given and adds it our action manager setting the target to itself.
 
 
-{% highlight cpp linenos %}
+{% highlight cpp %}
 
 //Part ofApp.h
 #include "MyCircle.h"
@@ -60,7 +60,7 @@ private:
 {% endhighlight %}
 
 
-{% highlight cpp linenos %}
+{% highlight cpp %}
 
 //Part of ofApp.cpp
 #include "ofxActionManager.h"

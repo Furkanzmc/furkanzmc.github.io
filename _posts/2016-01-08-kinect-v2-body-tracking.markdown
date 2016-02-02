@@ -22,7 +22,7 @@ So here's the flow to getting the skeleton joint position. First, you get the de
 
 Remember the flow? We first get an available Kinect device.
 
-{% highlight cpp linenos %}
+{% highlight cpp %}
 IKinectSensor *sensor = nullptr;
 IBodyFrameReader *bodyFrameReader = nullptr;
 
@@ -32,7 +32,7 @@ HRESULT hr = GetDefaultKinectSensor(&sensor);
 
 `HRESULT` is a Windows specific data type that holds return codes for the Windows specific functions. You use `SUCCEEDED` or `FAILED` to determine if the code was a success. You can find all the error codes in `winerror.h` file or [here][windows_hresult_list]. From here we only continue if the operation succeeded. So the rest of the code looks like this.
 
-{% highlight cpp linenos %}
+{% highlight cpp %}
 IKinectSensor *sensor = nullptr;
 IBodyFrameReader *bodyFrameReader = nullptr;
 
@@ -65,7 +65,7 @@ if (sensor == nullptr || FAILED(hr)) {
 
 After we are done with error checking, we can go ahead and get our skeleton data.
 
-{% highlight cpp linenos %}
+{% highlight cpp %}
 while (bodyFrameReader != nullptr) {
     IBodyFrame *bodyFrame = nullptr;
     hr = bodyFrameReader->AcquireLatestFrame(&bodyFrame);
@@ -101,7 +101,7 @@ while (bodyFrameReader != nullptr) {
 
 `IBody` frame itself doesn't give you any seemingly meaningful data. It's up to you to make sense of it, otherwise they are just numbers on the screen. You don't get a message saying user swiped right or raised her hand. That's why we use the `processBodies` function. Now, gesture recognition is not for this blog but we'll just do a simple one. Let's look at `processBodies`.
 
-{% highlight cpp linenos %}
+{% highlight cpp %}
 void processBodies(const unsigned int &bodyCount, IBody **bodies)
 {
     for (unsigned int bodyIndex = 0; bodyIndex < bodyCount; bodyIndex++) {
