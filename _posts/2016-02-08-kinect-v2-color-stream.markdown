@@ -1,6 +1,6 @@
 ---
 title:  "C++: Color Stream with Kinect v2"
-description: "A simple starting point for learning body tracking with Kinect v2"
+description: "Get the color data from Kinect v2"
 date: 2016-02-08
 tags: c++, kinect, programming
 ---
