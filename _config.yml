@@ -5,6 +5,13 @@ meta_description: "zmc.space, blogging about things I learn"
 aboutPage: true
 
 markdown: kramdown
+kramdown:
+  auto_ids:       true
+  footnote_nr:    1
+  entity_output:  as_char
+  toc_levels:     1..6
+  smart_quotes:   lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false
 markdown_ext:  markdown,mkdown,mkdn,mkd,md
 highlighter: rouge
 
