@@ -25,7 +25,7 @@ Next up, create a folder for your project. Let's name it `of_cmake`. Copy the `p
 
 If you want to use `addons`, then you'll see a `include(ofAddons.cmake)` line. Open `ofAddons.cmake`, or if you don't have it create the file, and add the desired addons like below. `${ADDONS_PATH}` is automatically set based on your `${OF_PATH}`, so you don't need to worry about that.
 
-{% highlight cmake linenos %}
+{% highlight cmake %}
 # Add addons
 list(APPEND ADDONS_SRC
     ${ADDONS_PATH}/ofxAnimatable/src/ofxAnimatable.cpp
