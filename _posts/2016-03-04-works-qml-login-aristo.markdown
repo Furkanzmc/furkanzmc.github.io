@@ -6,4 +6,4 @@ caption_header: QML Login Screen
 caption: QML Login Transition Implementation
 is_work: true
 ---
-[GitHub](https://github.com/Furkanzmc/QML-Example-Login)
+[GitHub](https://github.com/Furkanzmc/QML-UI-Animations#example-login-by-enszgr)
