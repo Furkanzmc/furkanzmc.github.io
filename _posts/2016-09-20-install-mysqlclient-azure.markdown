@@ -17,7 +17,11 @@ Here's a step by step guide to how to do it.
 the `Console` provided by the Web App download the file with the following command. Make sure to choose the version that works for you. Azure Web App
 uses Python 3.4 so I'm downloading that version with x86 architecture.
 
-`pip3 download http://www.lfd.uci.edu/~gohlke/pythonlibs/dp2ng7en/mysqlclient-1.3.7-cp34-none-win32.whl`
+{% highlight %}
+
+pip3 download http://www.lfd.uci.edu/~gohlke/pythonlibs/dp2ng7en/mysqlclient-1.3.7-cp34-none-win32.whl
+
+{% endhighlight %}
 
 I'm putting that command but somehow `pip` couldn't download that file so I had to download it my computer, upload it to cloud and get a direct link, then
 use that link to download the file. So, bear in mind that link might not work.
@@ -26,11 +30,19 @@ use that link to download the file. So, bear in mind that link might not work.
 So you need to rename that file to the appropriate one, which is the exact name of the file as seen on the URL above. So use the command below to
 change the file name.
 
-`mv .\uc .\mysqlclient-1.3.7-cp34-none-win32.whl`
+{% highlight %}
+
+mv .\uc .\mysqlclient-1.3.7-cp34-none-win32.whl
+
+{% endhighlight %}
 
 3- Now you are ready to install it with `pip`
 
-`pip3 install .\mysqlclient-1.3.7-cp34-none-win32.whl`
+{% highlight %}
+
+pip3 install .\mysqlclient-1.3.7-cp34-none-win32.whl
+
+{% endhighlight %}
 
 
 To make sure that it's installed, check the installed packages with `pip3 list`. If you see `mysqlclient` there, congratulations you are done!
