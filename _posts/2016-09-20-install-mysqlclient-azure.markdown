@@ -1,5 +1,5 @@
 ---
-title:  "Azure: Install mysqlclient Package on Azure Web App"
+title:  "Azure Python: Install mysqlclient Package on Azure Web App"
 description: "Install mysqlclient to use MySQL with Python"
 date: 2016-09-20
 tags: azure, web, cloud
@@ -8,7 +8,7 @@ tags: azure, web, cloud
 I'm new to Azure but it seems quite easy to use and Microsoft provides a decent amount of tutorials and documentation. I did have my struggles
 as I'm not really an experienced web developer well I'm not even a web developer :D. So it took sometime to figure it out.
 It seems that adding `mysqlclient>=1.3.7` to the `requirements.txt` file does not work because it's a pain to install `wheel` packages on Windows.
-So you need to manually download an unofficial binary from [here](http://www.lfd.uci.edu/~gohlke/pythonlibs/#mysqlclient) and then download that to
+And as far as I know, `mysql-python` package is unmaintained. So you need to manually download an unofficial binary of `mysqlclient` from [here](http://www.lfd.uci.edu/~gohlke/pythonlibs/#mysqlclient) and then download that to
 Azure Web App VM using `Console` or `PowerShell` and then install it manually using `pip`.
 
 Here's a step by step guide to how to do it.
