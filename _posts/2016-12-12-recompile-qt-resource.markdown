@@ -1,0 +1,18 @@
+---
+title:  "Qt Creator: Force the Resource Re-compilation"
+description: "Use custom build step to force resource compilation."
+date: 2016-12-12
+tags: IDE, qt, qt-creator
+---
+
+Because of a [bug](https://bugreports.qt.io/browse/QTCREATORBUG-1627) in Qt Creator, the `*.qrc` file i not always compiled into the executable file. A workaround to do this is to add a dummy file to your `*.qrc` file and then `touch` it before every build.
+To do that in Windows:
+
+1- Go to `Projects` tab
+2- Click `Add Build Step`
+3- Select `Custom Process Step`
+4- Fill it according to the following screenshot
+
+![cmake_configuration_page]({{ site.baseurl }}assets/images/qt_creator_custom_build_step/qt_creator_custom_build_step.png)
+
+And voila!
