@@ -1,7 +1,7 @@
 ---
 title:  "QML: Everyday QML Day 1"
 description: "Create a project with QML"
-date: 2016-03-04
+date: 2017-01-14
 tags: qml, programming, design
 ---
 
