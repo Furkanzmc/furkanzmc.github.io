@@ -14,6 +14,8 @@ I hope this will be use to someone out there.
 
 # Day 1
 
+![image](https://drive.google.com/uc?export=download&id=0B2b4SnYRu-h_U3QyX1pUUG1MTlU)
+
 The day one project is from the [100 Days of Swift](http://samvlu.com/) web site and it is a simple app that increases a number when clicked on a button.
 
 With this simple project you learn how to:
