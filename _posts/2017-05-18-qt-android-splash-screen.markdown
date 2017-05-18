@@ -1,6 +1,6 @@
 ---
 title:  "Qt Android: Use Splash Screen and Avoid Flicker"
-description: "Install mysqlclient to use MySQL with Python"
+description: "TLDR Post for How to Add Splash Screen"
 date: 2017-05-18
 tags: qt, android, qutils, tldr
 ---
