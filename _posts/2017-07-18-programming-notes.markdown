@@ -5,7 +5,7 @@ date: 2017-07-18
 tags: general, programming
 ---
 
-# Problem 1
+# Problem 1 - Exclude Files From Build in Gradle
 
 I recently added Firebase messaging support to [qutils](https://github.com/Furkanzmc/qutils). But I had no idea how to exclude the Firebase related files when I'm not using Firebase on my project. I finally figured it out.
 
