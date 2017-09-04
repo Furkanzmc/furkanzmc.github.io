@@ -1,6 +1,6 @@
 ---
 title:  "Note to Self"
-description: "General Notes About the Solutions I Have to a Problem"
+description: "General Notes About the Solutions I Have to Problems"
 date: 2017-07-18
 tags: general, programming
 ---
