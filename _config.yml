@@ -1,18 +1,17 @@
 name: zmc.space
 description: Live. Die. Repeat.
 meta_description: "zmc.space, blogging about things I learn"
-
 aboutPage: true
 
 markdown: kramdown
 kramdown:
-  auto_ids:       true
-  footnote_nr:    1
-  entity_output:  as_char
-  toc_levels:     1..6
-  smart_quotes:   lsquo,rsquo,ldquo,rdquo
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
   enable_coderay: false
-markdown_ext:  markdown,mkdown,mkdn,mkd,md
+markdown_ext: markdown,mkdown,mkdn,mkd,md
 highlighter: rouge
 
 gems: ['jekyll-paginate']
@@ -24,28 +23,27 @@ disqus: true
 disqus_shortname: 'zmcspace'
 
 # Details for the RSS feed generator
-url:            'http://zmc.space'
-author:         'Furkan Üzümcü'
-authorTwitter:  'furkanzmc'
-
-permalink:       /:year/:title/
+url: 'http://zmc.space'
+author: 'Furkan Üzümcü'
+authorTwitter: furkanzmc'
+permalink: /:year/:title/
 
 defaults:
-    -
-        scope:
-            path: "" # empty string for all files
-            type: pages
-        values:
-            layout: default
-    -
-        scope:
-            path: "" # empty string for all files
-            type: posts
-        values:
-            layout: post
-    -
-        scope:
-            path: ""
-            type: drafts
-        values:
-            layout: post
+  -
+    scope:
+      path: "" # empty string for all files
+      type: pages
+    values:
+      layout: default
+  -
+    scope:
+      path: "" # empty string for all files
+      type: posts
+    values:
+      layout: post
+  -
+    scope:
+      path: ""
+      type: drafts
+    values:
+      layout: post
