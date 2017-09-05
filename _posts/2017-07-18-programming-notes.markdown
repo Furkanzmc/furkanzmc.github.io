@@ -45,3 +45,77 @@ And I did not have the `elide` property set. So I wasn't seeing the effects. Aft
 Here's a poorly designed visual to help you understand it better.
 
 ![image](https://drive.google.com/uc?export=download&id=0B2b4SnYRu-h_ZUN1dFl4S3BvRkk)
+
+# Problem 4 - QML: Handle the Focus In an App With SwipeView and StackView
+
+I've had this problem using the `NativeUtils` in my library [qutils](https://github.com/Furkanzmc/qutils). Here's the general type of app you develop: You have a top `StackView` along with a menu bar. Each item in the `StackView` has its own navigation system.
+
+{% highlight qml %}
+
+Item {
+    id: root
+
+    SwipeView {
+        id: swipeView
+
+        ViewOne { }
+
+        ViewTwo { }
+
+        ViewThree { }
+
+        ViewFour { }
+    }
+
+    MenuBar {
+        id: menubar
+    }
+}
+
+{% endhighlight %}
+
+And in each view, you have a `StackView` for navigation.
+
+{% highlight qml %}
+
+Item {
+    id: root
+
+    NavigationBar {
+        id: navBar
+    }
+
+    NavigationStack {
+        id: navStack
+        initialItem: cmp
+    }
+
+    Component {
+        id: cmp
+
+        InnerViewOne { }
+    }
+}
+
+{% endhighlight %}
+
+And here's `InnerViewOne`.
+
+{% highlight qml %}
+
+NavigationPage {
+    id: root
+
+    NativeUtils {
+        buttonEventsEnabled: true
+        onBackButtonPressed: {
+            root.navigationStack.pop();
+        }
+    }
+}
+
+{% endhighlight %}
+
+Now, all four of those views are initialized. When you are in `ViewOne` you need to be able to tell that the focus is in this view even though the other items are also created. Now, when the `currentIndex` of `SwipeView` changes the focus property of the current item is set automatically. So when `currentIndex` is 0, `ViewOne`'s `focus` property will be true. Here's where the problem starts, within `ViewOne` you also have a `StackView` and that `StackView` can contain multiple items. And those items are where the real logic happens. So, If you are on Android and want to pop the stack you need to hook to the back button event and also need to know that `InnerViewOne` is the main visible item, that menu bar is not showing another view.
+
+Since `buttonEventsEnabled` is set to true, this instance will receive the events no matter the focus of the `NavigationPage`. To solve the problem, you need to make use of the `FocusScope` and bind to its focus property with the `NavigationStack`. And whenever the `focus` property of the `NavigationStack` changes, you need to get the last item in the stack and change its focus too.
