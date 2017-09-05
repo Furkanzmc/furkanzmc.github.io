@@ -16,11 +16,11 @@ set(CMAKE_MAKE_PROGRAM "E:/Qt/Tools/QtCreator/bin/jom.exe" CACHE STRING "Set mak
 
 Or you can set the value in CMake configuration settings to make it default for all the projects. Open the settings window and go to `Build & Run -> Kits`
 
-![settings_page]({{ site.baseurl }}assets/images/qt_creator_4_using_jom/settings_kits.jpg)
+![settings_page](/assets/images/qt_creator_4_using_jom/settings_kits.jpg)
 
 And then click on the `Change` button at the bottom next to `CMake Configuration` label.
 
-![cmake_configuration_page]({{ site.baseurl }}assets/images/qt_creator_4_using_jom/cmake_configuration_window.jpg)
+![cmake_configuration_page](/assets/images/qt_creator_4_using_jom/cmake_configuration_window.jpg)
 
 And add this line to the bottom:
 

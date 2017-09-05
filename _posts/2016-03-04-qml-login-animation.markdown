@@ -5,7 +5,7 @@ date: 2016-03-04
 tags: qml, programming, design
 ---
 
-![index page]({{ site.baseurl }}assets/images/qml_login_animations/main.gif)
+![index page](/assets/images/qml_login_animations/main.gif)
 
 This login concept belongs to [enszgr][enszgr_url]. I liked it and I wanted to recreate it with QML. This only focuses on the visual parts of the login screen so don't expect any functionality.
 

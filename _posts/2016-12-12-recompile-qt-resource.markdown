@@ -13,6 +13,6 @@ To do that in Windows:
 - Select `Custom Process Step`
 - Fill it according to the following screenshot
 
-![cmake_configuration_page]({{ site.baseurl }}assets/images/qt_creator_custom_build_step/qt_creator_custom_build_step.png)
+![cmake_configuration_page](/assets/images/qt_creator_custom_build_step/qt_creator_custom_build_step.png)
 
 And voila!
