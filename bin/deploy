@@ -8,7 +8,7 @@ set -e
 echo "Started deploying"
 
 # First push the changes to raw_blog
-git add -fA
+git add .
 git commit --allow-empty -m "$(git log -1 --pretty=%B) [ci skip]"
 git push -f -q origin raw_blog
 
@@ -25,7 +25,7 @@ cp -R ../build/* ./
 rm -rf ../build
 
 # Then push the changes
-git add -fA
+git add .
 git commit --allow-empty -m "$(git log -1 --pretty=%B) [ci skip]"
 git push -f -q origin master
 
