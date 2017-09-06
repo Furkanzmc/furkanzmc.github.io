@@ -20,7 +20,9 @@ bundle exec jekyll build -d ../build
 git checkout master
 
 # Then move the files from the build to here
-mv -f ../build/* ./
+cp -f ../build/* ./
+
+rm -rf ../build
 
 # Then push the changes
 git add -fA
