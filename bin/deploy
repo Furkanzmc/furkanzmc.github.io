@@ -20,7 +20,7 @@ bundle exec jekyll build -d ../build
 git checkout master
 
 # Then move the files from the build to here
-cp -f ../build/* ./
+cp -R ../build/* ./
 
 rm -rf ../build
 
