@@ -13,7 +13,7 @@ bundle exec jekyll build -d ../build
 
 # Push to master.
 
-mv -rf ../build/* ../
+mv -f ../build/* ../
 
 cd ..
 
