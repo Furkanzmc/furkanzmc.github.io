@@ -1,11 +1,12 @@
 ---
+layout: post
 title:  "QML: Example Login Animation"
 description: "Login Screen with QML"
 date: 2016-03-04
-tags: qml, programming, design
+tags: [qml, programming, design]
 ---
 
-![index page](/assets/images/qml_login_animations/main.gif)
+![index page](https://drive.google.com/uc?export=download&id=0B2b4SnYRu-h_N1p3NlhhX1Vuak0)
 
 This login concept belongs to [enszgr][enszgr_url]. I liked it and I wanted to recreate it with QML. This only focuses on the visual parts of the login screen so don't expect any functionality.
 

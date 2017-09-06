@@ -1,8 +1,9 @@
 ---
+layout: post
 title:  "QML: Access Children of a ListView"
 description: "Access Children of a ListView"
 date: 2016-09-20
-tags: qml
+tags: [qml, ]
 ---
 
 When working with `ListView`s you sometimes want to access the properties of an item in `ListView`. And here's how you do it!

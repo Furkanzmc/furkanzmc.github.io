@@ -1,8 +1,9 @@
 ---
+layout: post
 title:  "C++: Body Tracking with Kinect v2"
 description: "A simple starting point for learning body tracking with Kinect v2"
 date: 2016-01-08
-tags: c++, kinect, programming
+tags: [cpp, kinect, programming]
 ---
 
 Welcome to my 2nd post on using Kinect v2 with C++. If you haven't read it, you can read my introduction to Kinect v2 post [here][intro_kinect_link]

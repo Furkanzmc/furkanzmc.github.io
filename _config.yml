@@ -1,49 +1,61 @@
+# Mandatory settings
 name: zmc.space
-description: Live. Die. Repeat.
-meta_description: "zmc.space, blogging about things I learn"
-aboutPage: true
+paginate: 25
+url: http://zmc.space
+blog_theme: light # Or use dark
 
-markdown: kramdown
-kramdown:
-  auto_ids: true
-  footnote_nr: 1
-  entity_output: as_char
-  toc_levels: 1..6
-  smart_quotes: lsquo,rsquo,ldquo,rdquo
-  enable_coderay: false
-markdown_ext: markdown,mkdown,mkdn,mkd,md
-highlighter: rouge
+# Optional settings
+about_enabled: false # Change to true if you wish to show an icon in the navigation that redirects to the about page
+discus_identifier: 'zmcspace' # Add your Disqus identifier
+ga_analytics: 'UA-71841354-1' # Add your GA Tracking Id
+local_fonts: false # Change to true if you wish to use local fonts
+rss_enabled: false # Change to false if not
+scrollappear_enabled: true # Change to false to disable
+social:
+  dribbble: # Add your Dribbble handle
+  facebook: # Add your Facebook handle
+  flickr: # Add your Flickr handle
+  github: 'Furkanzmc' # Add your GitHub handle
+  linkedin: # Add your LinkedIn handle
+  twitter: 'Furkanzmc' # Add your Twitter handle
+  email: # Add your Email address
+  bitcoin: # Add your Bitcoin link or address
 
-gems: ['jekyll-paginate']
-paginate: 20
-baseurl: /
-domain_name: 'http://zmc.space'
-google_analytics: 'UA-71841354-1'
-disqus: true
-disqus_shortname: 'zmcspace'
-
-# Details for the RSS feed generator
-url: 'http://zmc.space'
-author: 'Furkan Üzümcü'
-authorTwitter: furkanzmc'
-permalink: /:year/:title/
-
+# Important settings (change at own risk)
+assets:
+  features:
+    automatic_img_size: false
+  sources:
+    - _assets/fonts
+    - _assets/images
+    - _assets/javascripts
+    - _assets/stylesheets
+    - _assets/yarn
+collections:
+  my_tags:
+    output: true
+    permalink: /tag/:slug/
 defaults:
   -
     scope:
-      path: "" # empty string for all files
-      type: pages
-    values:
-      layout: default
-  -
-    scope:
-      path: "" # empty string for all files
-      type: posts
-    values:
-      layout: post
-  -
-    scope:
       path: ""
-      type: drafts
+      type: my_tags
     values:
-      layout: post
+      layout: articles_by_tag
+exclude:
+  - .travis.yml
+  - bin/*
+  - circle.yml
+  - Gemfile
+  - Gemfile.lock
+  - package.json
+  - README.md
+  - vendor/
+  - yarn.lock
+plugins:
+  - jekyll-assets
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jemoji
+paginate_path: /posts/page/:num/
+permalink: posts/:slug

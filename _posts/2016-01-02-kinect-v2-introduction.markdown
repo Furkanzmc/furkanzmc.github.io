@@ -1,7 +1,9 @@
 ---
+layout: post
 title:  "C++: Introduction to Kinect v2"
 description: "General introduction to Kinect v2 with C++"
 date: 2016-01-02
+tags: [kinect, cpp]
 ---
 
 When I first started programming with Kinect v2, I couldn't find enough tutorials for using Kinect v2 with C++. The examples that come with the SDK gives a head-start but I think it'd be good to have a more structured resource on this. So I thought I'd share what I've learned so far in a structured format. This post is going to be a general introduction to Kinect v2, although most of what I'll write is already commonly know I thought it'd be a good starting point.

@@ -1,3 +1,5 @@
-<footer id="footer">
-    <p class="small">© Copyright {{ site.time | date: '%Y' }} {{ site.author }}</p>
+<footer class="footer {% if site.scrollappear_enabled %}appear{% endif %}">
+  <p>
+    <a href="{{ 'about' | relative_url }}" title="About me">Furkan Üzümcü</a>
+  </p>
 </footer>

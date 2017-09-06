@@ -1,8 +1,9 @@
 ---
+layout: post
 title:  "Azure Python: Install mysqlclient Package on Azure Web App"
 description: "Install mysqlclient to use MySQL with Python"
 date: 2016-09-20
-tags: azure, web, cloud
+tags: [azure, web, cloud]
 ---
 
 When installing a `wheel` package you may encounter an error saying `vcvarsall.bat file cannot be found.`. To fix this you either need to install

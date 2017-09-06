@@ -1,8 +1,9 @@
 ---
+layout: post
 title:  "Qt Android: Use Splash Screen and Avoid Flicker"
 description: "TLDR Post for How to Add Splash Screen"
 date: 2017-05-18
-tags: qt, android, qutils, tldr
+tags: [qt, android, qutils, tldr]
 ---
 
 This is just a TLDR version of [this post](https://medium.com/@benlaud/complete-guide-to-make-a-splash-screen-for-your-qml-android-application-567ca3bc70af).
@@ -116,4 +117,4 @@ To work around this problem I used the same style as the `splash.xml` but I remo
 
 You can see the problem here:
 
-![image](https://doc-14-00-docs.googleusercontent.com/docs/securesc/tbqa6s1jtsgnb7meh093vfbnsu530498/fph8utb0v4688hca5q3jlc101f1sqs1h/1495137600000/02650037401319194663/02650037401319194663/0B2b4SnYRu-h_YWR4amV1YldOY00?e=download)
+![image](https://drive.google.com/uc?export=download&id=0B2b4SnYRu-h_YWR4amV1YldOY00)

@@ -1,8 +1,9 @@
 ---
+layout: post
 title:  "QML: Everyday QML Day 1"
 description: "Create a project with QML"
 date: 2017-01-14
-tags: qml, programming, design
+tags: [qml, programming, design]
 ---
 
 # Overview
