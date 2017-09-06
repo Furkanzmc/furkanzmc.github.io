@@ -1,5 +1,3 @@
 _site/
-.sass-cache/
+.asset-cache/
 .DS_Store
-raw/.asset-cache
-build/
