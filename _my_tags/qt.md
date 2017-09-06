@@ -1,4 +1,0 @@
----
-slug: qt
-name: Qt
----

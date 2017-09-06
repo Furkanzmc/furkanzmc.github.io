@@ -1,4 +1,0 @@
----
-slug: cloud
-name: Cloud
----
