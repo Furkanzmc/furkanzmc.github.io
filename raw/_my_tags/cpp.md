@@ -1,4 +1,0 @@
----
-slug: cpp
-name: C++
----

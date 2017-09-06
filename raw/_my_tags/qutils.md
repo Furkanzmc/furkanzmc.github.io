@@ -1,4 +1,0 @@
----
-slug: qutils
-name: qutils
----
