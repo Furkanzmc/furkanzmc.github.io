@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>zmc.space | C++: Body Tracking with Kinect v2</title>
+  <meta name="description" content="A simple starting point for learning body tracking with Kinect v2">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="C++: Body Tracking with Kinect v2">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://zmc.space/posts/kinect-v2-body-tracking">
+  <meta property="og:description" content="A simple starting point for learning body tracking with Kinect v2">
+  <meta property="og:site_name" content="zmc.space">
+  <meta property="og:image" content="http://zmc.space/assets/og-image.jpg">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="http://zmc.space/posts/kinect-v2-body-tracking">
+  <meta name="twitter:title" content="C++: Body Tracking with Kinect v2">
+  <meta name="twitter:description" content="A simple starting point for learning body tracking with Kinect v2">
+  <meta name="twitter:image" content="http://zmc.space/assets/og-image.jpg">
+
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link href="http://zmc.space/feed.xml" type="application/rss+xml" rel="alternate" title="zmc.space Last 10 blog posts" />
+
+  
+
+  
+    <link rel="stylesheet" href="/assets/light.css">
+
+  
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav appear">
+  <a href="/" class="header-logo" title="zmc.space">zmc.space</a>
+  <ul class="header-links">
+    
+    
+      <li>
+        <a href="https://twitter.com/Furkanzmc" rel="noreferrer noopener" target="_blank" title="Twitter">
+          <span class="icon icon-twitter"></span>
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://github.com/Furkanzmc" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <span class="icon icon-github"></span>
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+</nav>
+
+        <article class="article appear">
+          <header class="article-header">
+            <h1>C++: Body Tracking with Kinect v2</h1>
+            <p>A simple starting point for learning body tracking with Kinect v2</p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                January 8, 2016
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  7 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+                  <a href="/tag/cpp">cpp</a>
+                
+                  <a href="/tag/kinect">kinect</a>
+                
+                  <a href="/tag/programming">programming</a>
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <p>Welcome to my 2nd post on using Kinect v2 with C++. If you haven’t read it, you can read my introduction to Kinect v2 post <a href="http://zmc.space/2016/kinect-v2-introduction/">here</a>
+With Kinect v2 you can track up to 6 people. This tutorial does not deal with drawing the skeletons or anything like that. I want to focus only on Kinect part here. You can use whatever tool you want to draw the data you get from Kinect.</p>
+
+<p>First, let’s talk about the data types that you’ll be using for skeleton tracking.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">IKinectSensor</code>: Represents a Kinect sensor device. This is the interface that you use to connect to a device, open new streams, or the availability of the device.</li>
+  <li><code class="highlighter-rouge">IBodyFrameSource</code>: You use this interface to get the frame source and connect to the <code class="highlighter-rouge">IBodyFrameReader</code>.</li>
+  <li><code class="highlighter-rouge">IBodyFrameReader</code>: This is the interface to acquire the skeleton data. You cannot create a <code class="highlighter-rouge">IBodyFrameReader</code> unless you have a valid, open and available <code class="highlighter-rouge">IKinectSensor</code>, and <code class="highlighter-rouge">IBodyFrameSource</code>.</li>
+  <li><code class="highlighter-rouge">IBodyFrame</code>: Represents the current frame in <code class="highlighter-rouge">IBodyFrameReader</code>. This holds relative time from the sensor, skeleton joint data and the floor clip plane.</li>
+  <li><code class="highlighter-rouge">IBody</code>: This is the that holds the data for skeleton joints (Joint positions, rotations), hand states and lean information.</li>
+</ul>
+
+<p>So here’s the flow to getting the skeleton joint position. First, you get the default Kinect device to a <code class="highlighter-rouge">IKinectSensor</code> interface, then using that you open a source for your <code class="highlighter-rouge">IBodyFrameReader</code> from which you get <code class="highlighter-rouge">IBodyFrame</code> that holds all the available skeleton information. Let’s get into some code.</p>
+
+<hr />
+
+<p>Remember the flow? We first get an available Kinect device.</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">IKinectSensor</span> <span class="o">*</span><span class="n">sensor</span> <span class="o">=</span> <span class="nb">nullptr</span><span class="p">;</span>
+<span class="n">IBodyFrameReader</span> <span class="o">*</span><span class="n">bodyFrameReader</span> <span class="o">=</span> <span class="nb">nullptr</span><span class="p">;</span>
+
+<span class="c1">//Get the default Kinect sensor
+</span><span class="n">HRESULT</span> <span class="n">hr</span> <span class="o">=</span> <span class="n">GetDefaultKinectSensor</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sensor</span><span class="p">);</span></code></pre></figure>
+
+<p><code class="highlighter-rouge">HRESULT</code> is a Windows specific data type that holds return codes for the Windows specific functions. You use <code class="highlighter-rouge">SUCCEEDED</code> or <code class="highlighter-rouge">FAILED</code> to determine if the code was a success. You can find all the error codes in <code class="highlighter-rouge">winerror.h</code> file or <a href="https://msdn.microsoft.com/en-us/library/cc704587.aspx">here</a>. From here we only continue if the operation succeeded. So the rest of the code looks like this.</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">IKinectSensor</span> <span class="o">*</span><span class="n">sensor</span> <span class="o">=</span> <span class="nb">nullptr</span><span class="p">;</span>
+<span class="n">IBodyFrameReader</span> <span class="o">*</span><span class="n">bodyFrameReader</span> <span class="o">=</span> <span class="nb">nullptr</span><span class="p">;</span>
+
+<span class="c1">//Get the default Kinect sensor
+</span><span class="n">HRESULT</span> <span class="n">hr</span> <span class="o">=</span> <span class="n">GetDefaultKinectSensor</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sensor</span><span class="p">);</span>
+
+<span class="c1">//If the function succeeds, open the sensor
+</span><span class="k">if</span> <span class="p">(</span><span class="n">SUCCEEDED</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">hr</span> <span class="o">=</span> <span class="n">sensor</span><span class="o">-&gt;</span><span class="n">Open</span><span class="p">();</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">SUCCEEDED</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span> <span class="p">{</span>
+        <span class="c1">//Get a body frame source from which we can get our body frame reader
+</span>        <span class="n">IBodyFrameSource</span> <span class="o">*</span><span class="n">bodyFrameSource</span> <span class="o">=</span> <span class="nb">nullptr</span><span class="p">;</span>
+        <span class="n">hr</span> <span class="o">=</span> <span class="n">sensor</span><span class="o">-&gt;</span><span class="n">get_BodyFrameSource</span><span class="p">(</span><span class="o">&amp;</span><span class="n">bodyFrameSource</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">SUCCEEDED</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">hr</span> <span class="o">=</span> <span class="n">bodyFrameSource</span><span class="o">-&gt;</span><span class="n">OpenReader</span><span class="p">(</span><span class="o">&amp;</span><span class="n">bodyFrameReader</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="c1">//We're done with bodyFrameSource, so we'll release it.
+</span>        <span class="n">safeRelease</span><span class="p">(</span><span class="n">bodyFrameSource</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">sensor</span> <span class="o">==</span> <span class="nb">nullptr</span> <span class="o">||</span> <span class="n">FAILED</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">"Cannot find any sensors.</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">E_FAIL</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>After we are done with error checking, we can go ahead and get our skeleton data.</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">while</span> <span class="p">(</span><span class="n">bodyFrameReader</span> <span class="o">!=</span> <span class="nb">nullptr</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">IBodyFrame</span> <span class="o">*</span><span class="n">bodyFrame</span> <span class="o">=</span> <span class="nb">nullptr</span><span class="p">;</span>
+    <span class="n">hr</span> <span class="o">=</span> <span class="n">bodyFrameReader</span><span class="o">-&gt;</span><span class="n">AcquireLatestFrame</span><span class="p">(</span><span class="o">&amp;</span><span class="n">bodyFrame</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">SUCCEEDED</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">IBody</span> <span class="o">*</span><span class="n">bodies</span><span class="p">[</span><span class="n">BODY_COUNT</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+        <span class="n">hr</span> <span class="o">=</span> <span class="n">bodyFrame</span><span class="o">-&gt;</span><span class="n">GetAndRefreshBodyData</span><span class="p">(</span><span class="n">_countof</span><span class="p">(</span><span class="n">bodies</span><span class="p">),</span> <span class="n">bodies</span><span class="p">);</span>
+
+        <span class="c1">//If we successfully got the body information, continue to process the bodies.
+</span>        <span class="k">if</span> <span class="p">(</span><span class="n">SUCCEEDED</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">processBodies</span><span class="p">(</span><span class="n">BODY_COUNT</span><span class="p">,</span> <span class="n">bodies</span><span class="p">);</span>
+            <span class="c1">//After body processing is done, we're done with our bodies so release them.
+</span>            <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">bodyIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">bodyIndex</span> <span class="o">&lt;</span> <span class="n">_countof</span><span class="p">(</span><span class="n">bodies</span><span class="p">);</span> <span class="n">bodyIndex</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">safeRelease</span><span class="p">(</span><span class="n">bodies</span><span class="p">[</span><span class="n">bodyIndex</span><span class="p">]);</span>
+            <span class="p">}</span>
+
+            <span class="c1">//We are done with bodyFrame, so release it
+</span>            <span class="n">safeRelease</span><span class="p">(</span><span class="n">bodyFrame</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">sensor</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">BOOLEAN</span> <span class="n">isSensorAvailable</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="n">hr</span> <span class="o">=</span> <span class="n">sensor</span><span class="o">-&gt;</span><span class="n">get_IsAvailable</span><span class="p">(</span><span class="o">&amp;</span><span class="n">isSensorAvailable</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">SUCCEEDED</span><span class="p">(</span><span class="n">hr</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">isSensorAvailable</span> <span class="o">==</span> <span class="nb">false</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">"No available sensor is found.</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">"Trouble reading the body frame.</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><code class="highlighter-rouge">IBody</code> frame itself doesn’t give you any seemingly meaningful data. It’s up to you to make sense of it, otherwise they are just numbers on the screen. You don’t get a message saying user swiped right or raised her hand. That’s why we use the <code class="highlighter-rouge">processBodies</code> function. Now, gesture recognition is not for this blog but we’ll just do a simple one. Let’s look at <code class="highlighter-rouge">processBodies</code>.</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">processBodies</span><span class="p">(</span><span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">bodyCount</span><span class="p">,</span> <span class="n">IBody</span> <span class="o">**</span><span class="n">bodies</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">bodyIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">bodyIndex</span> <span class="o">&lt;</span> <span class="n">bodyCount</span><span class="p">;</span> <span class="n">bodyIndex</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">IBody</span> <span class="o">*</span><span class="n">body</span> <span class="o">=</span> <span class="n">bodies</span><span class="p">[</span><span class="n">bodyIndex</span><span class="p">];</span>
+
+        <span class="c1">//Get the tracking status for the body, if it's not tracked we'll skip it
+</span>        <span class="n">BOOLEAN</span> <span class="n">isTracked</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="n">HRESULT</span> <span class="n">hr</span> <span class="o">=</span> <span class="n">body</span><span class="o">-&gt;</span><span class="n">get_IsTracked</span><span class="p">(</span><span class="o">&amp;</span><span class="n">isTracked</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">FAILED</span><span class="p">(</span><span class="n">hr</span><span class="p">)</span> <span class="o">||</span> <span class="n">isTracked</span> <span class="o">==</span> <span class="nb">false</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">continue</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">//If we're here the body is tracked so lets get the joint properties for this skeleton
+</span>        <span class="n">Joint</span> <span class="n">joints</span><span class="p">[</span><span class="n">JointType_Count</span><span class="p">];</span>
+        <span class="n">hr</span> <span class="o">=</span> <span class="n">body</span><span class="o">-&gt;</span><span class="n">GetJoints</span><span class="p">(</span><span class="n">_countof</span><span class="p">(</span><span class="n">joints</span><span class="p">),</span> <span class="n">joints</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">SUCCEEDED</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span> <span class="p">{</span>
+            <span class="c1">//Let's print the head's position
+</span>            <span class="k">const</span> <span class="n">CameraSpacePoint</span> <span class="o">&amp;</span><span class="n">headPos</span> <span class="o">=</span> <span class="n">joints</span><span class="p">[</span><span class="n">JointType_Head</span><span class="p">].</span><span class="n">Position</span><span class="p">;</span>
+            <span class="k">const</span> <span class="n">CameraSpacePoint</span> <span class="o">&amp;</span><span class="n">leftHandPos</span> <span class="o">=</span> <span class="n">joints</span><span class="p">[</span><span class="n">JointType_HandLeft</span><span class="p">].</span><span class="n">Position</span><span class="p">;</span>
+
+            <span class="c1">//Let's check if the use has his hand up
+</span>            <span class="k">if</span> <span class="p">(</span><span class="n">leftHandPos</span><span class="p">.</span><span class="n">Y</span> <span class="o">&gt;=</span> <span class="n">headPos</span><span class="p">.</span><span class="n">Y</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"LEFT HAND UP!!</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="n">HandState</span> <span class="n">leftHandState</span><span class="p">;</span>
+            <span class="n">hr</span> <span class="o">=</span> <span class="n">body</span><span class="o">-&gt;</span><span class="n">get_HandLeftState</span><span class="p">(</span><span class="o">&amp;</span><span class="n">leftHandState</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">SUCCEEDED</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">leftHandState</span> <span class="o">==</span> <span class="n">HandState_Closed</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"CLOSED HAND</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">leftHandState</span> <span class="o">==</span> <span class="n">HandState_Open</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"OPEN HAND</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">leftHandState</span> <span class="o">==</span> <span class="n">HandState_Lasso</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"PEW PEW HANDS</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">leftHandState</span> <span class="o">==</span> <span class="n">HandState_NotTracked</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"HAND IS NOT TRACKED</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">leftHandState</span> <span class="o">==</span> <span class="n">HandState_Unknown</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"HANDS STATE IS UNKNOWN</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Kinect has 3 data types for coordinate representation: <code class="highlighter-rouge">CameraSpacePoint</code>, <code class="highlighter-rouge">DepthSpacePoint</code> and <code class="highlighter-rouge">ColorSpacePoint</code>. You can guess what they mean. But keep in mind that <code class="highlighter-rouge">CameraSpacePoint</code> coordinate system is relative to Kinect. So, the point <code class="highlighter-rouge">0, 0, 0</code>, is the center of Kinect’s field of view. So it will change depending on where the sensor is looking at. <code class="highlighter-rouge">DepthSpacePoint</code> and <code class="highlighter-rouge">CameraSpacePoint</code> have the origin on their top left corner.</p>
+
+<p>As you can see clearly from the code above, we only get the positions for head and left hand. And from their positions we deduce that user has his left hand up. As you can imagine, this is a very very simple way of gesture detection. You’ll need more code and sophistication as you need more complex gestures, like swipe or punch (They are not that complex but those came to mind first.).</p>
+
+<p>You can also get hand states from <code class="highlighter-rouge">IBody</code> and you can guess what each of them are, maybe except <code class="highlighter-rouge">HandState_Lasso</code>. You get <code class="highlighter-rouge">HandState_Lasso</code> when you extend only your two fingers.
+Kinect does its thing at 30fps, so If you are developing a game or an interactive application with higher FPS nees you might want to use Kinect in a different thread.</p>
+
+<p>You can find the full source code <a href="https://gist.github.com/Furkanzmc/2925d8b53a5002d6f526">here</a>.</p>
+
+
+          </div>
+
+          <div class="article-share">
+            
+            
+            <a href="https://twitter.com/home?status=C%2B%2B%3A+Body+Tracking+with+Kinect+v2 - http://zmc.space/posts/kinect-v2-body-tracking by @Furkanzmc" title="Share on Twitter" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M492 109.5c-17.4 7.7-36 12.9-55.6 15.3 20-12 35.4-31 42.6-53.6 -18.7 11.1-39.4 19.2-61.5 23.5C399.8 75.8 374.6 64 346.8 64c-53.5 0-96.8 43.4-96.8 96.9 0 7.6 0.8 15 2.5 22.1 -80.5-4-151.9-42.6-199.6-101.3 -8.3 14.3-13.1 31-13.1 48.7 0 33.6 17.2 63.3 43.2 80.7C67 210.7 52 206.3 39 199c0 0.4 0 0.8 0 1.2 0 47 33.4 86.1 77.7 95 -8.1 2.2-16.7 3.4-25.5 3.4 -6.2 0-12.3-0.6-18.2-1.8 12.3 38.5 48.1 66.5 90.5 67.3 -33.1 26-74.9 41.5-120.3 41.5 -7.8 0-15.5-0.5-23.1-1.4C62.8 432 113.7 448 168.3 448 346.6 448 444 300.3 444 172.2c0-4.2-0.1-8.4-0.3-12.5C462.6 146 479 129 492 109.5z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://zmc.space/posts/kinect-v2-body-tracking" title="Share on Facebook" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z"/></svg>
+            </a>
+            <a href="https://plus.google.com/share?url=http://zmc.space/posts/kinect-v2-body-tracking" title="Share on Google+" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 128 128"><path d="M40.7 55.9v16.1c0 0 15.6 0 22 0C59.2 82.5 53.8 88.2 40.7 88.2c-13.3 0-23.7-10.8-23.7-24.2s10.4-24.2 23.7-24.2c7.1 0 11.6 2.5 15.8 5.9 3.3-3.3 3.1-3.8 11.6-11.9 -7.2-6.6-16.8-10.6-27.4-10.6C18.2 23.3 0 41.5 0 64c0 22.5 18.2 40.7 40.7 40.7 33.6 0 41.8-29.3 39-48.8H40.7zM113.9 56.7V42.6h-10.1v14.1H89.4v10.1h14.5v14.5h10.1V66.8H128V56.7H113.9z"/></svg>
+            </a>
+          </div>
+
+          
+            <div id="disqus_thread" class="article-comments"></div>
+            <script src="https://zmcspace.disqus.com/embed.js" async defer></script>
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+          
+        </article>
+        <footer class="footer appear">
+  <p>
+    <a href="/about" title="About me">Furkan Üzümcü</a>
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+  <script>
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-71841354-1','auto');ga('send','pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async></script>
+
+
+<script src="/assets/vendor.js"></script>
+
+
+
+  <script src="/assets/webfonts.js"></script>
+
+
+
+
+  <script src="/assets/scrollappear.js"></script>
+
+
+
+<script src="/assets/application.js"></script>
+
+
+</body>
+</html>
