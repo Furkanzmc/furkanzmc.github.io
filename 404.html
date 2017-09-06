@@ -1,32 +1,39 @@
+---
+permalink: /404.html
+sitemap: false
+---
+
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>zmc.space | Page not found</title>
+  <title>{{ site.name }} | Page not found</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  
+  {% if site.local_fonts %}
+    {% include stylesheet.html path="fonts" %}
+  {% endif %}
 
-  
-    <link type="text/css" rel="stylesheet" href="/assets/notfound-light.css">
-    <link rel="stylesheet" href="/assets/notfound-light.css">
-
-  
+  {% if site.blog_theme == "light" %}
+    {% stylesheet notfound-light %}
+    {% include stylesheet.html path="notfound-light" %}
+  {% else %}
+    {% include stylesheet.html path="notfound-dark" %}
+  {% endif %}
 </head>
 <body>
   <main class="notfound-wrapper">
     <div class="notfound-content">
-      <h1><a href="/" title="Back to homepage">zmc.space</a></h1>
+      <h1><a href="{{ '/' | relative_url }}" title="Back to homepage">{{ site.name }}</a></h1>
       <p>
-        Looks like you've lost your way. Let's get you back to the <a href="/">promised land</a>!
+        Looks like you've lost your way. Let's get you back to the <a href="{{ '/' | relative_url }}">promised land</a>!
       </p>
     </div>
   </main>
 
-  
-    <script src="/assets/webfonts.js"></script>
-
-  
+  {% unless site.local_fonts %}
+    {% include javascript.html path="webfonts" %}
+  {% endunless %}
 </body>
 </html>

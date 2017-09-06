@@ -1,0 +1,36 @@
+#!/usr/bin/env sh
+
+# Run this script to deploy the app to Github Pages.
+
+# Exit if any subcommand fails.
+set -e
+
+echo "Started deploying"
+
+# First push the changes to raw_blog
+git add -fA
+git commit --allow-empty -m "$(git log -1 --pretty=%B) [ci skip]"
+git push -f -q origin master
+
+# Then, build the site to a folder outside of this one
+yarn install --modules-folder ./_assets/yarn
+bundle exec jekyll build -d ../build
+
+# Then, switch to master
+git checkout master
+
+# Then move the files from the build to here
+mv -f ../build/* ./
+
+# Then push the changes
+git add -fA
+git commit --allow-empty -m "$(git log -1 --pretty=%B) [ci skip]"
+git push -f -q origin master
+
+# Move back to raw_blog
+git checkout raw_blog
+yarn install --modules-folder ./_assets/yarn
+
+# echo "Deployed Successfully!"
+
+exit 0

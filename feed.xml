@@ -1,90 +1,20 @@
+---
+---
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="https://www.w3.org/2005/Atom" xmlns:dc="https://purl.org/dc/elements/1.1/">
   <channel>
-    <title>zmc.space</title>
-    <description></description>
-    <link>http://zmc.space</link>
-    <atom:link href="http://zmc.space/feed.xml" rel="self" type="application/rss+xml" />
-    
+    <title>{{ site.name | xml_escape }}</title>
+    <description>{% if site.description %}{{ site.description | xml_escape }}{% endif %}</description>
+    <link>{{ site.url }}</link>
+    <atom:link href="{{ page.path | absolute_url }}" rel="self" type="application/rss+xml" />
+    {% for post in site.posts limit:10 %}
       <item>
-        <title>Note to Self</title>
-        <description>General Notes About the Solutions I Have to Problems</description>
-        <pubDate>Tue, 18 Jul 2017 00:00:00 -0400</pubDate>
-        <link>http://zmc.space/posts/programming-notes</link>
-        <guid isPermaLink="true">http://zmc.space/posts/programming-notes</guid>
+        <title>{{ post.title | xml_escape }}</title>
+        <description>{{ post.description | xml_escape }}</description>
+        <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
+        <link>{{ post.url | absolute_url }}</link>
+        <guid isPermaLink="true">{{ post.url | absolute_url }}</guid>
       </item>
-    
-      <item>
-        <title>Qt Android: Use Splash Screen and Avoid Flicker</title>
-        <description>TLDR Post for How to Add Splash Screen</description>
-        <pubDate>Thu, 18 May 2017 00:00:00 -0400</pubDate>
-        <link>http://zmc.space/posts/qt-android-splash-screen</link>
-        <guid isPermaLink="true">http://zmc.space/posts/qt-android-splash-screen</guid>
-      </item>
-    
-      <item>
-        <title>QML: Everyday QML Day 1</title>
-        <description>Create a project with QML</description>
-        <pubDate>Sat, 14 Jan 2017 00:00:00 -0500</pubDate>
-        <link>http://zmc.space/posts/everyday-qml</link>
-        <guid isPermaLink="true">http://zmc.space/posts/everyday-qml</guid>
-      </item>
-    
-      <item>
-        <title>Qt Creator: Force the Resource Re-compilation</title>
-        <description>Use custom build step to force resource compilation.</description>
-        <pubDate>Mon, 12 Dec 2016 00:00:00 -0500</pubDate>
-        <link>http://zmc.space/posts/recompile-qt-resource</link>
-        <guid isPermaLink="true">http://zmc.space/posts/recompile-qt-resource</guid>
-      </item>
-    
-      <item>
-        <title>Azure Python: Install mysqlclient Package on Azure Web App</title>
-        <description>Install mysqlclient to use MySQL with Python</description>
-        <pubDate>Tue, 20 Sep 2016 00:00:00 -0400</pubDate>
-        <link>http://zmc.space/posts/install-mysqlclient-azure</link>
-        <guid isPermaLink="true">http://zmc.space/posts/install-mysqlclient-azure</guid>
-      </item>
-    
-      <item>
-        <title>QML: Access Children of a ListView</title>
-        <description>Access Children of a ListView</description>
-        <pubDate>Tue, 20 Sep 2016 00:00:00 -0400</pubDate>
-        <link>http://zmc.space/posts/access-list-view-item</link>
-        <guid isPermaLink="true">http://zmc.space/posts/access-list-view-item</guid>
-      </item>
-    
-      <item>
-        <title>CMake: Using Jom with Qt Creator 4.0</title>
-        <description>Set the default make program to Jom</description>
-        <pubDate>Fri, 13 May 2016 00:00:00 -0400</pubDate>
-        <link>http://zmc.space/posts/using-jom-qt-creator-4-cmake</link>
-        <guid isPermaLink="true">http://zmc.space/posts/using-jom-qt-creator-4-cmake</guid>
-      </item>
-    
-      <item>
-        <title>QML: Example Login Animation</title>
-        <description>Login Screen with QML</description>
-        <pubDate>Fri, 04 Mar 2016 00:00:00 -0500</pubDate>
-        <link>http://zmc.space/posts/qml-login-animation</link>
-        <guid isPermaLink="true">http://zmc.space/posts/qml-login-animation</guid>
-      </item>
-    
-      <item>
-        <title>QML: Mixing together TextInput and MouseArea(s)</title>
-        <description>Put MouseArea over TextInput and control focus</description>
-        <pubDate>Thu, 03 Mar 2016 00:00:00 -0500</pubDate>
-        <link>http://zmc.space/posts/qml-mixing-text-input-and-mouse-area</link>
-        <guid isPermaLink="true">http://zmc.space/posts/qml-mixing-text-input-and-mouse-area</guid>
-      </item>
-    
-      <item>
-        <title>C++: Color Stream with Kinect v2</title>
-        <description>Get the color data from Kinect v2</description>
-        <pubDate>Mon, 08 Feb 2016 00:00:00 -0500</pubDate>
-        <link>http://zmc.space/posts/kinect-v2-color-stream</link>
-        <guid isPermaLink="true">http://zmc.space/posts/kinect-v2-color-stream</guid>
-      </item>
-    
+    {% endfor %}
   </channel>
 </rss>
