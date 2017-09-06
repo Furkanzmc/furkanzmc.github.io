@@ -10,7 +10,7 @@ echo "Started deploying"
 # First push the changes to raw_blog
 git add -fA
 git commit --allow-empty -m "$(git log -1 --pretty=%B) [ci skip]"
-git push -f -q origin master
+git push -f -q origin raw_blog
 
 # Then, build the site to a folder outside of this one
 yarn install --modules-folder ./_assets/yarn
