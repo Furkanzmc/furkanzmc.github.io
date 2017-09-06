@@ -16,6 +16,8 @@ git push -f -q origin raw_blog
 yarn install --modules-folder ./_assets/yarn
 bundle exec jekyll build -d ../build
 
+cp -R _assets/fonts/ionicons ../build/assets/
+
 # Then, switch to master
 git checkout master
 
