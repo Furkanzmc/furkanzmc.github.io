@@ -1,8 +1,5 @@
----
-layout: null
----
+# www.robotstxt.org/
 
-sitemap: {{ site.baseurl | replace: 'https', 'http' | append: '/sitemap.xml' }}
-
-user-agent: EmailCollector
-disallow: /
+# Allow crawling of all content
+User-agent: *
+Disallow:
