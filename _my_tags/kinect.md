@@ -1,0 +1,4 @@
+---
+slug: kinect
+name: Kinect
+---

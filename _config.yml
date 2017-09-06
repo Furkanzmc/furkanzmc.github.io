@@ -1,51 +1,61 @@
-# Site Info
-title:              "The Plain"
-description:        "The Plain is a minimalist Jekyll theme, that's it. Can't say anymore..."
-google_verify:      epFgX0s_0RM3CdjwFcsewfXzPov2g8s9ZBOLyaIUH-o # Put your Google Verification here
-google_analytics:   UA-XXXXXXX-X # Put your Google Analytics code
+# Mandatory settings
+name: zmc.space
+paginate: 25
+url: http://zmc.space
+blog_theme: light # Or use dark
 
-# Author Info
-author_name:        "YOUR_NAME" # Your name here
-author_email:       hnrird@gmail.com # Your email here
-author_gravatar:    2b38b1b0e7e08b69379bd61582adf0c8 # Your Gravatar md5 hash here for logo
-twitter_username:   HeiswayiNrird # Your Twitter username here
-github_username:    heiswayi # Your GitHub username here
+# Optional settings
+about_enabled: false # Change to true if you wish to show an icon in the navigation that redirects to the about page
+discus_identifier: 'zmcspace' # Add your Disqus identifier
+ga_analytics: 'UA-71841354-1' # Add your GA Tracking Id
+local_fonts: false # Change to true if you wish to use local fonts
+rss_enabled: false # Change to false if not
+scrollappear_enabled: true # Change to false to disable
+social:
+  dribbble: # Add your Dribbble handle
+  facebook: # Add your Facebook handle
+  flickr: # Add your Flickr handle
+  github: 'Furkanzmc' # Add your GitHub handle
+  linkedin: # Add your LinkedIn handle
+  twitter: 'Furkanzmc' # Add your Twitter handle
+  email: # Add your Email address
+  bitcoin: # Add your Bitcoin link or address
 
-# Site Settings
-baseurl:            "" # Base URL must end WITHOUT a slash, default: ""
-permalink:          /notes/:title # Post permalink
-timezone:           Asia/Kuala_Lumpur # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-mathjax:            true  # enables support for mathjax - set to false to disable
-
-# Site Build
-highlighter:        rouge
-markdown:           kramdown
-kramdown:
-    input:          GFM
-sass:
-    style:          :compressed
-
-# Other Params
-include:            [ "robots.txt" ]
-exclude:            [ "LICENSE", "README.md", "CNAME", "vendor", "Gemfile" ]
-gems:
-  - jekyll-sitemap
-
-
-
+# Important settings (change at own risk)
+assets:
+  features:
+    automatic_img_size: false
+  sources:
+    - _assets/fonts
+    - _assets/images
+    - _assets/javascripts
+    - _assets/stylesheets
+    - _assets/yarn
+collections:
+  my_tags:
+    output: true
+    permalink: /tag/:slug/
 defaults:
   -
     scope:
-      path:         ""
+      path: ""
+      type: my_tags
     values:
-      layout:       "null"
-  -
-    scope:
-      type:         "pages"
-    values:
-      layout:       "page"
-  -
-    scope:
-      type:         "posts"
-    values:
-      layout:       "post"
+      layout: articles_by_tag
+exclude:
+  - .travis.yml
+  - bin/*
+  - circle.yml
+  - Gemfile
+  - Gemfile.lock
+  - package.json
+  - README.md
+  - vendor/
+  - yarn.lock
+plugins:
+  - jekyll-assets
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jemoji
+paginate_path: /posts/page/:num/
+permalink: posts/:slug
