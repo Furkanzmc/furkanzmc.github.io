@@ -42,17 +42,7 @@ defaults:
       type: my_tags
     values:
       layout: articles_by_tag
-exclude:
-  - .travis.yml
-  - bin/*
-  - circle.yml
-  - Gemfile
-  - Gemfile.lock
-  - package.json
-  - README.md
-  - vendor/
-  - yarn.lock
-  - raw/*
+exclude: [.travis.yml, bin/*, circle.yml, Gemfile, Gemfile.lock, package.json, README.md, vendor/, yarn.lock, raw/*]
 plugins:
   - jekyll-assets
   - jekyll-paginate
