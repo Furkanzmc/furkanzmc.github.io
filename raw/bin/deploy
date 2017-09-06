@@ -1,0 +1,30 @@
+#!/usr/bin/env sh
+
+# Run this script to deploy the app to Github Pages.
+
+# Exit if any subcommand fails.
+set -e
+
+echo "Started deploying"
+
+# Build site.
+yarn install --modules-folder ./_assets/yarn
+bundle exec jekyll build -d ../build
+
+# Push to master.
+
+mv ../build/* ../
+
+cd ..
+
+git add -fA
+git commit --allow-empty -m "$(git log -1 --pretty=%B) [ci skip]"
+git push -f -q origin master
+
+# Move back to previous branch.
+git checkout -
+yarn install --modules-folder ./_assets/yarn
+
+# echo "Deployed Successfully!"
+
+exit 0
