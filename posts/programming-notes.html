@@ -188,6 +188,20 @@
 
 <p>Since <code class="highlighter-rouge">buttonEventsEnabled</code> is set to true, this instance will receive the events no matter the focus of the <code class="highlighter-rouge">NavigationPage</code>. To solve the problem, you need to make use of the <code class="highlighter-rouge">FocusScope</code> and bind to its focus property with the <code class="highlighter-rouge">NavigationStack</code>. And whenever the <code class="highlighter-rouge">focus</code> property of the <code class="highlighter-rouge">NavigationStack</code> changes, you need to get the last item in the stack and change its focus too.</p>
 
+<h1 id="problem-5---qml-android-call-a-number-or-start-an-email-activity-for-an-email-address">Problem 5 - QML Android: Call a number, or start an email activity for an email address</h1>
+
+<p>This is really easu using the right URI and <code class="highlighter-rouge">Qt.openUrlExternally</code>.</p>
+
+<p>To open the dialar app for a specified number, use the following:</p>
+
+<figure class="highlight"><pre><code class="language-qml" data-lang="qml"><span class="nx">Qt</span><span class="p">.</span><span class="nx">openUrlExternally</span><span class="p">(</span><span class="s2">"tel:"</span> <span class="o">+</span> <span class="nx">phoneNumber</span><span class="p">);</span></code></pre></figure>
+
+<p>To open the email app for a specified email, use the following:</p>
+
+<figure class="highlight"><pre><code class="language-qml" data-lang="qml"><span class="nx">Qt</span><span class="p">.</span><span class="nx">openUrlExternally</span><span class="p">(</span><span class="s2">"mailto:email@address.com"</span><span class="p">);</span></code></pre></figure>
+
+<p>You can learn more about the mailto syntax <a href="https://www.labnol.org/internet/email/learn-mailto-syntax/6748/">here</a>.</p>
+
           </div>
 
           <div class="article-share">
