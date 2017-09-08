@@ -120,3 +120,25 @@ NavigationPage {
 Now, all four of those views are initialized. When you are in `ViewOne` you need to be able to tell that the focus is in this view even though the other items are also created. Now, when the `currentIndex` of `SwipeView` changes the focus property of the current item is set automatically. So when `currentIndex` is 0, `ViewOne`'s `focus` property will be true. Here's where the problem starts, within `ViewOne` you also have a `StackView` and that `StackView` can contain multiple items. And those items are where the real logic happens. So, If you are on Android and want to pop the stack you need to hook to the back button event and also need to know that `InnerViewOne` is the main visible item, that menu bar is not showing another view.
 
 Since `buttonEventsEnabled` is set to true, this instance will receive the events no matter the focus of the `NavigationPage`. To solve the problem, you need to make use of the `FocusScope` and bind to its focus property with the `NavigationStack`. And whenever the `focus` property of the `NavigationStack` changes, you need to get the last item in the stack and change its focus too.
+
+# Problem 5 - QML Android: Call a number, or start an email activity for an email address
+
+This is really easu using the right URI and `Qt.openUrlExternally`.
+
+To open the dialar app for a specified number, use the following:
+
+{% highlight qml %}
+
+Qt.openUrlExternally("tel:" + phoneNumber);
+
+{% endhighlight %}
+
+To open the email app for a specified email, use the following:
+
+{% highlight qml %}
+
+Qt.openUrlExternally("mailto:email@address.com");
+
+{% endhighlight %}
+
+You can learn more about the mailto syntax [here](https://www.labnol.org/internet/email/learn-mailto-syntax/6748/).
