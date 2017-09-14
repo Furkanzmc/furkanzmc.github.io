@@ -7,6 +7,14 @@
     <atom:link href="http://zmc.space/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>How to Support Emoji on Google Cloud SQL and Django</title>
+        <description>Support Emojis in Your MySQL Database</description>
+        <pubDate>Thu, 14 Sep 2017 00:00:00 -0400</pubDate>
+        <link>http://zmc.space/posts/emoji-on-google-cloud-sql-django</link>
+        <guid isPermaLink="true">http://zmc.space/posts/emoji-on-google-cloud-sql-django</guid>
+      </item>
+    
+      <item>
         <title>Note to Self</title>
         <description>General Notes About the Solutions I Have to Problems</description>
         <pubDate>Tue, 18 Jul 2017 00:00:00 -0400</pubDate>
@@ -76,14 +84,6 @@
         <pubDate>Thu, 03 Mar 2016 00:00:00 -0500</pubDate>
         <link>http://zmc.space/posts/qml-mixing-text-input-and-mouse-area</link>
         <guid isPermaLink="true">http://zmc.space/posts/qml-mixing-text-input-and-mouse-area</guid>
-      </item>
-    
-      <item>
-        <title>C++: Color Stream with Kinect v2</title>
-        <description>Get the color data from Kinect v2</description>
-        <pubDate>Mon, 08 Feb 2016 00:00:00 -0500</pubDate>
-        <link>http://zmc.space/posts/kinect-v2-color-stream</link>
-        <guid isPermaLink="true">http://zmc.space/posts/kinect-v2-color-stream</guid>
       </item>
     
   </channel>
