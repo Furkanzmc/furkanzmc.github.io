@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>zmc.space | How to Deploy for App Store with Qt</title>
+  <meta name="description" content="Learn about how to deploy your app to the App Store on macOS">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="How to Deploy for App Store with Qt">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://zmc.space/posts/deploy-to-macos-store">
+  <meta property="og:description" content="Learn about how to deploy your app to the App Store on macOS">
+  <meta property="og:site_name" content="zmc.space">
+  <meta property="og:image" content="http://zmc.space/assets/og-image.jpg">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="http://zmc.space/posts/deploy-to-macos-store">
+  <meta name="twitter:title" content="How to Deploy for App Store with Qt">
+  <meta name="twitter:description" content="Learn about how to deploy your app to the App Store on macOS">
+  <meta name="twitter:image" content="http://zmc.space/assets/og-image.jpg">
+
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link href="http://zmc.space/feed.xml" type="application/rss+xml" rel="alternate" title="zmc.space Last 10 blog posts" />
+
+  
+
+  
+    <link rel="stylesheet" href="/assets/light.css">
+
+  
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav appear">
+  <a href="/" class="header-logo" title="zmc.space">zmc.space</a>
+  <ul class="header-links">
+    
+    
+      <li>
+        <a href="https://twitter.com/Furkanzmc" rel="noreferrer noopener" target="_blank" title="Twitter">
+          <span class="icon icon-twitter"></span>
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://github.com/Furkanzmc" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <span class="icon icon-github"></span>
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+</nav>
+
+        <article class="article appear">
+          <header class="article-header">
+            <h1>How to Deploy for App Store with Qt</h1>
+            <p>Learn about how to deploy your app to the App Store on macOS</p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                April 25, 2018
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  4 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+                  <a href="/tag/qt">qt</a>
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <p>Deploying to the App Store is pretty straightforward using XCode. But I had lots of trouble using the <code class="highlighter-rouge">macdeployqt</code> and signing the bundle.
+But after a few unsuccessful attempts at manually signing the app bundle in the <code class="highlighter-rouge">.pro</code> file, I decided to go another way.</p>
+
+<p>If you use XCode to deploy the app to the App Store, you just need to go to <code class="highlighter-rouge">Product &gt; Archive</code>. And that’s it. After the product is successfully archived
+you will be able to see it in the Organizer (<code class="highlighter-rouge">Window &gt; Organizer</code>) and just upload the archive to the App Store. We are going to be using this same process.</p>
+
+<h1 id="step-1-create-an-xcode-project">Step 1: Create an XCode project.</h1>
+
+<p>You can convert the <code class="highlighter-rouge">.pro</code> file to a fully functional XCode project. Add the following target to your <code class="highlighter-rouge">.pro</code> file.</p>
+
+<pre><code class="language-qmake">osx {
+    # You export any environment variables that you use to configure your project.
+    generate_xcode.commands = export CUSTOM_ENV_VAR=34
+    QBIN_BATH = $$dirname(QMAKE_QMAKE)
+    QT_PATH = $$dirname(QBIN_BATH)
+    generate_xcode.commands += &amp;&amp; $$QMAKE_QMAKE -spec macx-xcode $$PWD/CuzTranslationApp.pro -o $$OUT_PWD/ CONFIG+=$$BUILD_TYPE CONFIG+=release QMAKE_INCDIR_QT=$$QT_PATH/include QMAKE_LIBDIR=$$QT_PATH/lib QMAKE_MOC=$$QT_PATH/bin/moc QMAKE_QMAKE=$$QT_PATH/bin/qmake
+
+    QMAKE_EXTRA_TARGETS += generate_xcode
+}
+</code></pre>
+
+<p>Now, whenever you want to create an XCode project you can just run <code class="highlighter-rouge">make generate_xcode</code> and you’ll have a fully configured project file.
+Also, you can do this buy adding an additional make step in <code class="highlighter-rouge">Projects</code> tab in Qt Creator.</p>
+
+<p><img src="https://drive.google.com/uc?export=download&amp;id=1U01isydj83gXqT8eU1hKq2TrhqG5VNoB" alt="generate_xcode" /></p>
+
+<p>Open the project file once the project is generated.</p>
+
+<h1 id="step-2-archive-using-xcode">Step 2: Archive Using XCode</h1>
+
+<p>Now, open XCode and archive the project by clicking on <code class="highlighter-rouge">Product -&gt; Archive</code>. Make sure that signing the bundle is automatically handled by XCode. Once this project is finished, you can see the archive file in the Organizer.
+Open the Organizer by clicking on <code class="highlighter-rouge">Window -&gt; Organizer</code>.</p>
+
+<p><img src="https://drive.google.com/uc?export=download&amp;id=1SjK3bZvUsyv2stAOZldOjIXedpLX5-q7" alt="organizer" /></p>
+
+<p>Right click on the archive and click on <code class="highlighter-rouge">Show in Finder.</code></p>
+
+<p>XCode stores all the archives in this directory: <code class="highlighter-rouge">/Users/Furkanzmc/Library/Developer/Xcode/Archives/%Y-%m-%d/</code></p>
+
+<p><img src="https://drive.google.com/uc?export=download&amp;id=1eu0QeHRJetqwvlzF0ih-HmmVkI2cpQdX" alt="archive_contents" /></p>
+
+<p>The <code class="highlighter-rouge">.xcarchive</code> file is a folder much like the <code class="highlighter-rouge">.app</code> bundle. Since XCode signs the archive and the bundle just before uploading to the App Store, we can play with the contents of this folder.
+Let’s create a script that will automatically find the newest archive folder in XCode’s archives folder and then run <code class="highlighter-rouge">macdeployqt</code> on the contained app bundle.</p>
+
+<pre><code class="language-qmake">CONFIG(release, debug|release): {
+    QT_BIN_PATH = $$dirname(QMAKE_QMAKE)
+    QT_PLUGINS_FOLDER = $$dirname(QT_BIN_PATH)/plugins
+    # Get the absolute directory path for XCode archives folder.
+    XCODE_ARCHIVES_DIRECTORY = $$system(echo ~/Library/Developer/Xcode/Archives)/$$system(date +%Y-%m-%d)
+    # Get the newest file that starts with the target name.
+    XCODE_ARCHIVE_NAME = $$system(cd $$XCODE_ARCHIVES_DIRECTORY &amp;&amp; ls | grep -e $${TARGET}* | sort -n -t _ -k 2 | tail -1)
+    # This will be the absolute path to the app bundle.
+    DEPLOYED_APP_PATH = ""
+    # If the variable is set to something, it means that we found our archive file.
+    !isEmpty(XCODE_ARCHIVE_NAME) {
+        DEPLOYED_APP_PATH = $$XCODE_ARCHIVES_DIRECTORY/$$XCODE_ARCHIVE_NAME/Products/Applications/$${TARGET}.app
+        EXISTS_RESULT = $$system([ ! -e $$quote(\"$$DEPLOYED_APP_PATH\") ] &amp;&amp; echo "false" || echo "true")
+        # If the archive file doesn't exist, we are going to use the app bunlde in the build directory.
+        equals(EXISTS_RESULT, false) {
+            deploy.depends += all
+            DEPLOYED_APP_PATH = $$OUT_PWD/$${TARGET}.app
+        }
+        else {
+            DEPLOYED_APP_PATH = $$quote(\"$$DEPLOYED_APP_PATH\")
+        }
+    }
+    else {
+        # Since we cannot find the file, we need to make sure that the project is built so that the app bundle is creted.
+        deploy.depends += all
+        DEPLOYED_APP_PATH = $$OUT_PWD/$${TARGET}.app
+    }
+
+    BUNDLE_PLUGINS_FOLDER = $$DEPLOYED_APP_PATH/Contents/Plugins
+
+    # The deploy target runs macdeployqt and removes the unsed files from the bundle. Signing is handled by XCode when uploading to the App Store.
+    deploy.commands = $$QT_BIN_PATH/macdeployqt $$DEPLOYED_APP_PATH -qmldir=$$PWD/qml
+    # Delete the unneccessary files. These files are not used in this project.
+    deploy.commands += &amp;&amp; rm -r $$BUNDLE_PLUGINS_FOLDER/quick/libqtquickcontrols2fusionstyleplugin.dylib
+    deploy.commands += &amp;&amp; rm -r $$BUNDLE_PLUGINS_FOLDER/quick/libqtquickcontrols2imaginestyleplugin.dylib
+    deploy.commands += &amp;&amp; rm -r $$BUNDLE_PLUGINS_FOLDER/quick/libqtquickcontrols2materialstyleplugin.dylib
+
+    deploy.commands += &amp;&amp; rm -r $$BUNDLE_PLUGINS_FOLDER/quick/libqtquickcontrols2universalstyleplugin.dylib
+    deploy.commands += &amp;&amp; rm -r $$BUNDLE_PLUGINS_FOLDER/quick/libwidgetsplugin.dylib
+    deploy.commands += &amp;&amp; rm -r $$BUNDLE_PLUGINS_FOLDER/sqldrivers/libqsqlmysql.dylib
+
+    deploy.commands += &amp;&amp; rm -r $$BUNDLE_PLUGINS_FOLDER/sqldrivers/libqsqlpsql.dylib
+    deploy.commands += &amp;&amp; rm -r $$BUNDLE_PLUGINS_FOLDER/styles/libqmacstyle.dylib
+    deploy.commands += &amp;&amp; rm -rf $$DEPLOYED_APP_PATH/Contents/Resources/qml/QtQuick/Fusion
+
+    deploy.commands += &amp;&amp; rm -rf $$DEPLOYED_APP_PATH/Contents/Resources/qml/QtQuick/Imagine
+    deploy.commands += &amp;&amp; rm -rf $$DEPLOYED_APP_PATH/Contents/Resources/qml/QtQuick/Material
+    deploy.commands += &amp;&amp; rm -rf $$DEPLOYED_APP_PATH/Contents/Resources/qml/QtQuick/Universal
+
+    deploy.commands += &amp;&amp; rm -rf $$DEPLOYED_APP_PATH/Contents/Resources/qml/QtQuick/Universal
+    deploy.commands += &amp;&amp; rm -rf $$DEPLOYED_APP_PATH/Contents/Resources/qml/QtQuick/Controls.2/Fusion
+    deploy.commands += &amp;&amp; rm -rf $$DEPLOYED_APP_PATH/Contents/Resources/qml/QtQuick/Controls.2/Imagine
+
+    deploy.commands += &amp;&amp; rm -rf $$DEPLOYED_APP_PATH/Contents/Resources/qml/QtQuick/Controls.2/Material
+    deploy.commands += &amp;&amp; rm -rf $$DEPLOYED_APP_PATH/Contents/Resources/qml/QtQuick/Controls.2/Universal
+    # dSYM files are bundled with a different bundle ID than the app id and they are rejected by the App Store.
+    deploy.commands += &amp;&amp; find $$DEPLOYED_APP_PATH/ -name $$quote(\"*.dSYM\") -exec rm -rf -d -f {} +
+
+    # Copy the geoservices
+    deploy.commands += &amp;&amp; mkdir -p $$BUNDLE_PLUGINS_FOLDER/geoservices/
+    deploy.commands += &amp;&amp; cp $$QT_PLUGINS_FOLDER/geoservices/libqtgeoservices_itemsoverlay.dylib $$BUNDLE_PLUGINS_FOLDER/geoservices/libqtgeoservices_itemsoverlay.dylib
+    deploy.commands += &amp;&amp; cp $$QT_PLUGINS_FOLDER/geoservices/libqtgeoservices_mapbox.dylib $$BUNDLE_PLUGINS_FOLDER/geoservices/libqtgeoservices_mapbox.dylib
+
+    deploy.commands += &amp;&amp; cp $$QT_PLUGINS_FOLDER/geoservices/libqtgeoservices_mapboxgl.dylib $$BUNDLE_PLUGINS_FOLDER/geoservices/libqtgeoservices_mapboxgl.dylib
+    QMAKE_EXTRA_TARGETS += deploy
+}
+</code></pre>
+
+<p>This script will find the newest archive file in the XCode’s archive folder with the target name and then run <code class="highlighter-rouge">macdeployqt</code> on the contained bundle.</p>
+
+<p>Now, either run <code class="highlighter-rouge">make deploy</code> or add a custom make process for <code class="highlighter-rouge">deploy</code> and then run the configuration.
+Once this process is done, we have ourselves a fully contained <code class="highlighter-rouge">.xcarchive</code> file!</p>
+
+<h1 id="step-3-upload-the-archive-file-to-the-app-store">Step 3: Upload the Archive File to the App Store</h1>
+
+<p>Go to Organizer again and click on that sweet <code class="highlighter-rouge">Upload to App Store</code> button!</p>
+
+<p><img src="https://drive.google.com/uc?export=download&amp;id=1CANfhT8ADAICF-M74xu8YIE93wETxjvV" alt="upload" /></p>
+
+<p>Make sure that you select automatic signing so you don’t have to deal with manually signing.</p>
+
+<h1 id="step-4-weird-victory-dance">Step 4: Weird Victory Dance</h1>
+
+<p><img src="https://media.giphy.com/media/eGwW26RL3PknC/giphy.gif" alt="dance" /></p>
+
+          </div>
+
+          <div class="article-share">
+            
+            
+            <a href="https://twitter.com/home?status=How+to+Deploy+for+App+Store+with+Qt - http://zmc.space/posts/deploy-to-macos-store by @Furkanzmc" title="Share on Twitter" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M492 109.5c-17.4 7.7-36 12.9-55.6 15.3 20-12 35.4-31 42.6-53.6 -18.7 11.1-39.4 19.2-61.5 23.5C399.8 75.8 374.6 64 346.8 64c-53.5 0-96.8 43.4-96.8 96.9 0 7.6 0.8 15 2.5 22.1 -80.5-4-151.9-42.6-199.6-101.3 -8.3 14.3-13.1 31-13.1 48.7 0 33.6 17.2 63.3 43.2 80.7C67 210.7 52 206.3 39 199c0 0.4 0 0.8 0 1.2 0 47 33.4 86.1 77.7 95 -8.1 2.2-16.7 3.4-25.5 3.4 -6.2 0-12.3-0.6-18.2-1.8 12.3 38.5 48.1 66.5 90.5 67.3 -33.1 26-74.9 41.5-120.3 41.5 -7.8 0-15.5-0.5-23.1-1.4C62.8 432 113.7 448 168.3 448 346.6 448 444 300.3 444 172.2c0-4.2-0.1-8.4-0.3-12.5C462.6 146 479 129 492 109.5z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://zmc.space/posts/deploy-to-macos-store" title="Share on Facebook" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z"/></svg>
+            </a>
+            <a href="https://plus.google.com/share?url=http://zmc.space/posts/deploy-to-macos-store" title="Share on Google+" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 128 128"><path d="M40.7 55.9v16.1c0 0 15.6 0 22 0C59.2 82.5 53.8 88.2 40.7 88.2c-13.3 0-23.7-10.8-23.7-24.2s10.4-24.2 23.7-24.2c7.1 0 11.6 2.5 15.8 5.9 3.3-3.3 3.1-3.8 11.6-11.9 -7.2-6.6-16.8-10.6-27.4-10.6C18.2 23.3 0 41.5 0 64c0 22.5 18.2 40.7 40.7 40.7 33.6 0 41.8-29.3 39-48.8H40.7zM113.9 56.7V42.6h-10.1v14.1H89.4v10.1h14.5v14.5h10.1V66.8H128V56.7H113.9z"/></svg>
+            </a>
+          </div>
+
+          
+            <div id="disqus_thread" class="article-comments"></div>
+            <script src="https://zmcspace.disqus.com/embed.js" async defer></script>
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+          
+        </article>
+        <footer class="footer appear">
+  <p>
+    <a href="/about" title="About me">Furkan Üzümcü</a>
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+  <script>
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-71841354-1','auto');ga('send','pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async></script>
+
+
+<script src="/assets/vendor.js"></script>
+
+
+
+  <script src="/assets/webfonts.js"></script>
+
+
+
+
+  <script src="/assets/scrollappear.js"></script>
+
+
+
+<script src="/assets/application.js"></script>
+
+
+</body>
+</html>

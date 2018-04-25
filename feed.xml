@@ -7,6 +7,14 @@
     <atom:link href="http://zmc.space/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>How to Deploy for App Store with Qt</title>
+        <description>Learn about how to deploy your app to the App Store on macOS</description>
+        <pubDate>Wed, 25 Apr 2018 00:00:00 -0400</pubDate>
+        <link>http://zmc.space/posts/deploy-to-macos-store</link>
+        <guid isPermaLink="true">http://zmc.space/posts/deploy-to-macos-store</guid>
+      </item>
+    
+      <item>
         <title>How to Support Emoji on Google Cloud SQL and Django</title>
         <description>Support Emojis in Your MySQL Database</description>
         <pubDate>Thu, 14 Sep 2017 00:00:00 -0400</pubDate>
@@ -76,14 +84,6 @@
         <pubDate>Fri, 04 Mar 2016 00:00:00 -0500</pubDate>
         <link>http://zmc.space/posts/qml-login-animation</link>
         <guid isPermaLink="true">http://zmc.space/posts/qml-login-animation</guid>
-      </item>
-    
-      <item>
-        <title>QML: Mixing together TextInput and MouseArea(s)</title>
-        <description>Put MouseArea over TextInput and control focus</description>
-        <pubDate>Thu, 03 Mar 2016 00:00:00 -0500</pubDate>
-        <link>http://zmc.space/posts/qml-mixing-text-input-and-mouse-area</link>
-        <guid isPermaLink="true">http://zmc.space/posts/qml-mixing-text-input-and-mouse-area</guid>
       </item>
     
   </channel>
