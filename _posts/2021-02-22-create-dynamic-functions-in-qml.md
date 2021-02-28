@@ -38,7 +38,8 @@ the properties don't match. This is pretty useful and can help us reduce a lot o
 There's one case that's not covered here though. We may also have callable objects that are
 persisted or stored in the same data structure as the ones I mention above. In these cases, what we
 can do is to have a `QObject` and expose it to QML side so we can dispatch function calls
-with string identifiers which are then used in C++ side to get callbacks and execute.
+with string (or even better, with enums) identifiers which are then used in C++ side to get
+callbacks and execute.
 
 ```qml
 Button {
