@@ -48,8 +48,28 @@ other people. Starting with the early command prompts with keyboard, to mouse, a
 I've spent most of my life without thinking about this, like many other normal people. But then I
 started using Vim...
 
-I've been a Vim user for a little over a year now, and I haven't had this realization until a few months ago. Text processing is
-so ingrained in our day to day work, we don't even think about it. It becomes second nature.
+# Adopting Unix Philosophy Through Vim
+
+I'm sure everyone is aware of the Unix Philosophy. You either heard it, or even practice it in your
+own day to day job. But just to refresh our memory, here's the four items[[1]](https://en.wikipedia.org/wiki/Unix_philosophy):
+
+> 1. Make each program do one thing well. To do a new job, build afresh rather than complicate old
+> programs by adding new "features".
+> 2. Expect the output of every program to become the input to another, as yet unknown, program.
+> Don't clutter output with extraneous information. Avoid stringently columnar or binary input
+> formats. Don't insist on interactive input.
+> 3. Design and build software, even operating systems, to be tried early, ideally within weeks.
+> Don't hesitate to throw away the clumsy parts and rebuild them.
+> 4. Use tools in preference to unskilled help to lighten a programming task, even if you have to
+> detour to build the tools and expect to throw some of them out after you've finished using them.
+
+These norms originated from Ken Thomson and were documented by Doug McIlroy in 1978. But they stood
+the test of time for 43 years, and I suspect it will keep being that way for a long time to come.
+
+These are all golden standards to live by, however I want to draw your attention to item #4.
+
+
+-----
 
 It's not a revolutionary realization. Of course we are processing text, that's why the existence of
 all the editors and IDEs out there! But bear with me, this will nicely tie into the use of command
