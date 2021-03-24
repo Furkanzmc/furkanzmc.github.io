@@ -1,6 +1,6 @@
 # Site settings
-title_left    : "zmc.space"
-title_right   : "space" # default: ""
+title_left    : "zmc"
+title_right   : ".space" # default: ""
 description   : "Minimalist Jekyll theme for technical writing blog."
 keywords      : "Jekyll, theme, free, download, SEO, blog, web, minimalist, thinkspace"
 url           : https://zmc.space # site url
