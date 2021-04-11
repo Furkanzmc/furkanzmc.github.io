@@ -4,6 +4,7 @@ title:  "C++: Color Stream with Kinect v2"
 description: "Get the color data from Kinect v2"
 date: 2016-02-08
 tags: "cpp, kinect, programming"
+comments: true
 ---
 
 Kinect v2 supports 1080p RGB image and has 30 frames per second. So you can get much better quality than Kinect v1 which supported 640x480.

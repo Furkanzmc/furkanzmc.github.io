@@ -4,6 +4,7 @@ title:  "QML: Create dynamic function objects from C++ for QML"
 description: "Learn to make use of QJSEngine and QJSValue to construct dynamic function objects."
 date: 2021-02-22
 tags: "qt, qml"
+comments: true
 ---
 
 When working with QML, I always favor static typing to dynamic typing as much as possible. I very

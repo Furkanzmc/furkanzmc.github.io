@@ -4,6 +4,7 @@ title:  "Qt Android: Use Splash Screen and Avoid Flicker"
 description: "TLDR Post for How to Add Splash Screen"
 date: 2017-05-18
 tags: "qt, android, qutils, tldr"
+comments: true
 ---
 
 This is just a TLDR version of [this post](https://medium.com/@benlaud/complete-guide-to-make-a-splash-screen-for-your-qml-android-application-567ca3bc70af).

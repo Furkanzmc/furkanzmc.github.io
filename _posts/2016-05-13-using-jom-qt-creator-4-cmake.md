@@ -4,6 +4,7 @@ title:  "CMake: Using Jom with Qt Creator 4.0"
 description: "Set the default make program to Jom"
 date: 2016-05-13
 tags: "qtcreator, programming"
+comments: true
 ---
 
 With the release of Qt Creator 4.0, the use of CMake becomes less painful. But `nmake` is the default make program so the use of `-j X` is not an option.

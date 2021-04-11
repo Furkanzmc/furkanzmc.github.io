@@ -4,6 +4,7 @@ title:  "QML: Why are anchors faster than using bindings?"
 description: "Find out why using bindings is a bad idea for doing batch positioning."
 date: 2021-03-23
 tags: "qml, qt"
+comments: true
 ---
 
 In the [QtQuick performance considerations](https://doc.qt.io/qt-5/qtquick-performance.html#position-elements-with-anchors)

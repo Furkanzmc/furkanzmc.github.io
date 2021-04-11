@@ -4,6 +4,7 @@ title:  "How to Deploy for App Store with Qt"
 description: "Learn how to deploy your app to the App Store on macOS"
 date: 2018-04-25
 tags: "qt"
+comments: true
 ---
 
 Deploying to the App Store is pretty straightforward using XCode. But I had lots of trouble using the `macdeployqt` and signing the bundle.

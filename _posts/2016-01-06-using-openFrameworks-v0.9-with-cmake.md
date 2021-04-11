@@ -4,6 +4,7 @@ title:  "CMake: using openFrameworks v0.9 with CMake on Windows"
 description: "CMake file templates for openFrameworks v0.9"
 date: 2016-01-06
 tags: "cpp, openFrameworks, programming"
+comments: true
 ---
 
 **EDIT:** You can get the update `ofProjectGenerator` from [here][ofproject_generator_release_link].

@@ -4,6 +4,7 @@ title:  "Note to Self"
 description: "General Notes About the Solutions I Have to Problems"
 date: 2017-07-18
 tags: "general, programming"
+comments: true
 ---
 
 # Problem 1 - Android: Exclude Files From Build in Gradle

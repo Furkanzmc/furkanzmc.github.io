@@ -4,6 +4,7 @@ title:  "QML: Example Login Animation"
 description: "Login Screen with QML"
 date: 2016-03-04
 tags: "qml, programming, design"
+comments: true
 ---
 
 ![index page](https://drive.google.com/uc?export=download&id=0B2b4SnYRu-h_N1p3NlhhX1Vuak0)

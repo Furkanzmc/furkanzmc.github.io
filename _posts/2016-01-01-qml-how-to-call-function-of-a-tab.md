@@ -2,7 +2,7 @@
 layout: post
 title: "QML: How to Call a Function That's Inside of a TabView"
 description: "Call a function or get a property in a TabView"
-comments: 2016-01-01
+comments: true
 keywords: "qml"
 ---
 

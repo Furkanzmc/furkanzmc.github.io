@@ -2,7 +2,7 @@
 layout: post
 title: "How to Compile OpenBR for x86 Architecture with MSVC2013"
 description: "Compile OpenBR for x86 Windows"
-comments: 2015-12-30
+comments: true
 keywords: "cpp, guide"
 ---
 

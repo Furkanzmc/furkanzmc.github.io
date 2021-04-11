@@ -4,6 +4,7 @@ title:  "openFrameworks: Making Easy Animations With ofxActionManager"
 description: "A port of cocos2dx action system"
 date: 2016-01-16
 tags: "cpp, programming, openFrameworks"
+comments: true
 ---
 
 I picked up using openFrameworks a while ago. But even before that I've been doing game development with [Cocos2dx][cocos2dx_link]. It's really a great framework and you come to get used to some aspects of it. And it becomes harder for you to live without them. :D

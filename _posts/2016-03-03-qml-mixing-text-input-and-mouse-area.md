@@ -4,6 +4,7 @@ title:  "QML: Mixing together TextInput and MouseArea(s)"
 description: "Put MouseArea over TextInput and control focus"
 date: 2016-03-03
 tags: "qml, programming"
+comments: true
 ---
 
 `TextInput` gets activated with **pressing** rather than *clicking*. This creates some problems on mobile devices where you would like to add swipe or press and hold behaviors over `TextInput` with `MouseArea` over it. While I was developing [Mantar][mantar_url]. I wanted to press and hold over a `TextInput` to toggle the done state of a task and when I click on it, I wanted to start editing the task. I also had a topmost `MouseArea` that controlled swipe up and down gestures to open or close the menu.

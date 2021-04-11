@@ -4,6 +4,7 @@ title:  "How to Support Emoji on Google Cloud SQL and Django"
 description: "Support Emojis in Your MySQL Database"
 date: 2017-09-14
 tags: "django, python, google_cloud"
+comments: true
 ---
 
 To enable emojis in your database, you just need to create it using `utf8mb4` charset and `utf8mb4_bin` collation. And then you can insert emojis to your database. But it's not that straightforward when you are using Django and Google Cloud SQL.
