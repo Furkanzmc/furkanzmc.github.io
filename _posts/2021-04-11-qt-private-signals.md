@@ -81,8 +81,8 @@ undocumented, there's indeed a way to create private signals. And I think this s
 way of creating signals for all classes as the users of a class should not know about its internal
 state.
 
-You can use `QPrivateSignal` as the first parameter of a signal to indicate that the signal is
-supposed to be private. When `moc` is processing your file, it reads the first argument and if it's
+You can use `QPrivateSignal` as the last parameter of a signal to indicate that the signal is
+supposed to be private. When `moc` is processing your file, it reads the arguments and if it's
 `QPrivateSignal` then it creates a special version of the signal handler that always feeds in the
 default constructed `QPrivateSignal` for the class. `QPrivateSignal` is defined inside `Q_OBJECT`
 so as long as you have `Q_OBJECT` you have access to private signals.
@@ -214,7 +214,7 @@ be exposed.
 // Theme.h
 signals:
     void themeChanged(QPrivateSignal pr);
-    void themeChangedWithParams(QPrivateSignal pr, int type);
+    void themeChangedWithParams(int type, QPrivateSignal pr);
 ```
 
 ```qml
@@ -224,9 +224,12 @@ Theme {
     console.log("pr is", pr)
     // Output: "pr is undefined"
   }
-  onThemeChangedWithParams: (pr, type) => {
+  onThemeChangedWithParams: (type, pr) => {
     console.log("pr is", pr)
     // Output: "pr is QVariant(Theme::QPrivateSignal, )"
+  }
+  // You should have this handler.
+  onThemeChangedWithParams: (type) => {
   }
 }
 ```
