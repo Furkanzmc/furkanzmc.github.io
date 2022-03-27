@@ -1,38 +1,35 @@
 # For documentation on this file, see:
 # https://github.com/riggraz/no-style-please#customize-the-menu
 
+---
+
 entries:
   - title: info
     entries:
-      - title: a (nearly) no-CSS, fast, minimalist Jekyll theme.
-      - title: github repo
-        url: https://github.com/riggraz/no-style-please
-      - title: "used by <a href='https://riggraz.dev'>riggraz.dev</a> and <a href='https://github.com/riggraz/no-style-please/network/dependents'>many others</a>"
+      - title: email
+        url: mailto:zmc@duck.com
+      - title: github
+        url: https://github.com/Furkanzmc
+      - title: twitter
+        url: https://twitter.com/Furkanzmc
+      - title: youtube
+        url: https://www.youtube.com/channel/UCByNLGxhbcn6OQFc7iOQGDQ
 
-  - title: all posts
+  - title: recent posts
     post_list:
-      limit: 5
+      limit: 8
       show_more: true
-      show_more_text: See archive...
+      show_more_text: see more...
       show_more_url: archive.html
-
-  - title: posts by category
-    post_list:
-      category: example2
-      show_more: true
-      show_more_text: See more posts...
-      show_more_url: example2-archive.html
 
   - title: rss
     url: feed.xml
-  
-  - title: another list
+
+  - title: what i'm thinking about/interested in
     entries:
-      - title: with subitems
-        entries:
-          - title: with subsubitems
-          - title: example page
-            url: about
-  - title: PRO TIP
-    entries:
-      - title: to edit this menu, edit _data/menu.yml file
+      - title: developer <-> designer relationship
+      - title: programming languages
+      - title: programming language design
+      - title: developer tools
+      - title: declarative programming
+      - title: software architecture

@@ -1,62 +1,137 @@
 // -------------- THEME SWITCHER -------------- //
-@mixin dark-appearance {
-  filter: invert(1);
-  img {
-    filter: invert(1);
+@import "/assets/css/base16.light.css" screen;
+@import "/assets/css/base16.dark.css" screen and (prefers-color-scheme: dark);
 
-    &.ioda { filter: invert(0); }
+html {
+  --bg: #fff8e7; // Normal:guibg
+  --headings: #abb0c0;
+  --text: #485a62; // Normal:guifg
+  --date: #1f8332; // Label
+  --category: #b28761; // Tag
+  --fenced-block: #b28761; // Tag
+  --link: #0075c9; // Link
+  --footer-text: #485a62; // StatusLineNC
+  --divider: #459d90; // PreProc
+  --status-line-mode-fg: #c5cbdb; // StatusLineMode:fg
+  --status-line-mode-bg: #4c5764; // StatusLineMode:bg
+  --blockquote-bg: #efe4d2; // CursorLine:bg
+}
+
+@mixin dark-appearance {
+  --bg: #202a31;
+  --headings: #abb0c0;
+  --text: #abb0c0;
+  --date: #1f8332;
+  --category: #b28761;
+  --fenced-block: #b28761;
+  --link: #5496bd;
+  --footer-text: #abb0c0;
+  --divider: #007f8a;
+  --status-line-mode-fg: #364850; // StatusLineMode:fg
+  --status-line-mode-bg: #b1b4a2; // StatusLineMode:bg
+  --blockquote-bg: #2b3740; // CursorLine:bg
+}
+
+html[data-theme='dark'] {
+  @include dark-appearance;
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-theme='auto'] {
+    @include dark-appearance;
   }
 }
 
-body[a="dark"] { @include dark-appearance; }
-
-
-@media (prefers-color-scheme: dark) {
-  body[a="auto"] { @include dark-appearance; }
-}
 // -------------------------------------------- //
 
 // bg color is also needed in html in order to
 // block body's background propagation
 // see: https://stackoverflow.com/a/61265706
-html, body { background: white; }
+html, body {
+  background: var(--bg);
+  color: var(--text);
+}
 
 html { height: 100%; }
 
 body {
-  color: black;
   font-family: monospace;
-  font-size: 16px;
+  font-size: 12px;
   line-height: 1.4;
   margin: 0;
-  min-height: 100%;
   overflow-wrap: break-word;
+  min-height: 100%;
 }
 
-.post-meta { text-align: right; }
+@media screen and (min-width: 40.5em) {
+  body {
+    font-size: 14px;
+  }
+}
 
 h2, h3, h4, h5, h6 { margin-top: 3rem; }
 
-hr { margin: 2rem 0; }
+// Add `#` prefix to headers and highlight `#` {{{
+
+h1 {
+  &:before {
+    content: '# ';
+    color: var(--category);
+  }
+}
+
+h2 {
+  &:before {
+    content: '## ';
+    color: var(--category);
+  }
+}
+
+h3 {
+  &:before {
+    content: '### ';
+    color: var(--category);
+  }
+}
+
+h4 {
+  &:before {
+    content: '#### ';
+    color: var(--category);
+  }
+}
+
+h5 {
+  &:before {
+    content: '##### ';
+    color: var(--category);
+  }
+}
+
+h6 {
+  &:before {
+    content: '###### ';
+    color: var(--category);
+  }
+}
+
+// }}}
+
+hr {
+  margin: 2rem 0;
+  color: var(--divider)
+}
 
 p { margin: 1rem 0; }
 
-li { margin: 0.4rem 0; }
-
-*:target { background: yellow; }
-
-.w {
-  max-width: 640px;
-  margin: 0 auto;
-  padding: 4rem 2rem;
-}
+li { margin: 0.2rem 0; }
 
 hr {
   text-align: center;
   border: 0;
 
-  &:before { content: '/////' }
-  &:after { content: attr(data-content) '/////' }
+  &:before { content: '-----' }
+  &:after { content: attr(data-content) '-----' }
 }
 
 table { width: 100%; }
@@ -67,28 +142,118 @@ table, th, td {
   padding: 0.4rem;
 }
 
-code {
-  color: white;
-  background: black;
-}
-
-div.highlighter-rouge code {
-  display: block;
-  overflow-x: auto;
-  white-space: pre-wrap;
-  padding: 1rem;
-}
-
 blockquote {
   font-style: italic;
-  border: thin solid black;
+  border: none;
+  background: var(--blockquote-bg);
   padding: 1rem;
+  margin: 0;
+  margin-bottom: 1rem;
 
-  p { margin: 0; }
+  p {
+    margin: 0;
+
+    &:before {
+      content: '> ';
+      color: var(--fenced-block);
+    }
+  }
 }
 
 img {
   max-width: 100%;
   display: block;
   margin: 0 auto;
+}
+
+a {
+  color: var(--link);
+}
+
+*:target { background: yellow; }
+
+.post-meta { text-align: right; }
+
+.site-body {
+  max-width: 81ch;
+  margin: 0;
+  padding: 0.4rem 1rem;
+}
+
+@media screen and (min-width: 40.5em) {
+  .site-body {
+    padding: 1rem 2rem;
+  }
+}
+
+.site-footer {
+  margin-left: 1em;
+  margin-bottom: 1em;
+  color: var(--text)
+}
+
+@media screen and (min-width: 40.5em) {
+  .site-footer {
+    margin-left: 3em;
+  }
+}
+
+.theme-toggle {
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0.14em;
+  color: var(--status-line-mode-fg);
+  background: var(--status-line-mode-bg);
+  font-size: 10px;
+}
+
+@media screen and (min-width: 40.5em) {
+  .theme-toggle {
+    font-size: 12px;
+  }
+}
+
+.category {
+  color: var(--category);
+}
+
+.post-list-date {
+  color: var(--date);
+}
+
+code.language-html code.language-plaintext {
+  color: var(--bg);
+  background: var(--text);
+}
+
+code.language-plaintext {
+  color: var(--bg);
+  background: var(--text);
+}
+
+hr.site-footer-hr {
+  text-align: left;
+  border: 0;
+
+  &:before { content: '=====' }
+  &:after { content: '=====' }
+}
+
+div.highlighter-rouge div.highlight {
+  display: block;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  padding: 1rem;
+
+  &:before {
+    content: '```';
+    color: var(--fenced-block);
+  }
+
+  &:after {
+    content: '```';
+    color: var(--fenced-block);
+  }
 }
