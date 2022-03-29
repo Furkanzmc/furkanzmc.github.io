@@ -1,6 +1,6 @@
 // -------------- THEME SWITCHER -------------- //
-@import "/assets/css/base16.light.css" screen;
-@import "/assets/css/base16.dark.css" screen and (prefers-color-scheme: dark);
+@import "/assets/css/cosmic_latte.light.css" screen;
+@import "/assets/css/cosmic_latte.dark.css" screen and (prefers-color-scheme: dark);
 
 html {
   --bg: #fff8e7; // Normal:guibg
@@ -205,6 +205,10 @@ a:hover {
 a:active {
   color: var(--link);
   text-decoration: underline;
+}
+
+code {
+  font-size: 12px;
 }
 
 *:target { background: yellow; }
