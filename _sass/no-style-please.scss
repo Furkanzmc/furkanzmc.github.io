@@ -15,6 +15,7 @@ html {
   --status-line-mode-fg: #c5cbdb; // StatusLineMode:fg
   --status-line-mode-bg: #4c5764; // StatusLineMode:bg
   --blockquote-bg: #efe4d2; // CursorLine:bg
+  --type-fg: #a154ae; // Type:fg
 }
 
 @mixin dark-appearance {
@@ -27,9 +28,10 @@ html {
   --link: #5496bd;
   --footer-text: #abb0c0;
   --divider: #007f8a;
-  --status-line-mode-fg: #364850; // StatusLineMode:fg
-  --status-line-mode-bg: #b1b4a2; // StatusLineMode:bg
-  --blockquote-bg: #2b3740; // CursorLine:bg
+  --status-line-mode-fg: #364850;
+  --status-line-mode-bg: #b1b4a2;
+  --blockquote-bg: #2b3740;
+  --type-fg: #9b85bb;
 }
 
 html[data-theme='dark'] {
@@ -124,6 +126,11 @@ hr {
 
 p { margin: 1rem 0; }
 
+b {
+  &:before { content: '**' }
+  &:after { content: '**' }
+}
+
 li { margin: 0.2rem 0; }
 
 hr {
@@ -168,6 +175,36 @@ img {
 
 a {
   color: var(--link);
+
+  &:before {
+    content: '[[';
+    color: var(--type-fg);
+  }
+
+  &:after {
+    content: ']]';
+    color: var(--type-fg);
+  }
+}
+
+a:link {
+  color: var(--link);
+  text-decoration: none;
+}
+
+a:visited {
+  color: var(--link);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--link);
+  text-decoration: underline dotted;
+}
+
+a:active {
+  color: var(--link);
+  text-decoration: underline;
 }
 
 *:target { background: yellow; }
