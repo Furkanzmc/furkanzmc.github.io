@@ -18,7 +18,7 @@ you will be able to see it in the Organizer (`Window > Organizer`) and just uplo
 
 You can convert the `.pro` file to a fully functional XCode project. Add the following target to your `.pro` file.
 
-```qmake
+```
 osx {
     # You export any environment variables that you use to configure your project.
     generate_xcode.commands = export CUSTOM_ENV_VAR=34
@@ -54,7 +54,7 @@ XCode stores all the archives in this directory: `/Users/Furkanzmc/Library/Devel
 The `.xcarchive` file is a folder much like the `.app` bundle. Since XCode signs the archive and the bundle just before uploading to the App Store, we can play with the contents of this folder.
 Let's create a script that will automatically find the newest archive folder in XCode's archives folder and then run `macdeployqt` on the contained app bundle.
 
-```qmake
+```
 CONFIG(release, debug|release): {
     QT_BIN_PATH = $$dirname(QMAKE_QMAKE)
     QT_PLUGINS_FOLDER = $$dirname(QT_BIN_PATH)/plugins
