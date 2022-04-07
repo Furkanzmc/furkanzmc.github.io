@@ -4,7 +4,7 @@ title:  "Color Stream with Kinect v2"
 description: "Get the color data from Kinect v2"
 date: 2016-02-08
 category:
-  - cpp
+  - c++
   - kinect
   - programming
 comments: true

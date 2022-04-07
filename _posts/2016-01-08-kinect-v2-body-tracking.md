@@ -4,7 +4,7 @@ title:  "Body Tracking with Kinect v2"
 description: "A simple starting point for learning body tracking with Kinect v2"
 date: 2016-01-08
 category:
-  - cpp
+  - c++
   - kinect
   - programming
 comments: true

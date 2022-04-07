@@ -5,7 +5,7 @@ description: "General introduction to Kinect v2 with C++"
 date: 2016-01-02
 category:
   - kinect
-  - cpp
+  - c++
 comments: true
 ---
 
