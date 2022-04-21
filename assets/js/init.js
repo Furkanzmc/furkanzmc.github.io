@@ -4,6 +4,7 @@ const gitalk = new Gitalk({
     repo: 'zmc.space.comments',
     owner: 'Furkanzmc',
     admin: ['Furkanzmc'],
+    id: location.pathname,
     distractionFreeMode: true
 })
 
