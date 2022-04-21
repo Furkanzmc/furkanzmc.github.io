@@ -4,6 +4,9 @@ layout: default
 
 {%-include back_link.html-%}
 
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
 <article>
   <p class="post-meta">
     <span class="category">
@@ -19,3 +22,5 @@ layout: default
 
   {{ content }}
 </article>
+
+<div id="gitalk-container"></div>
