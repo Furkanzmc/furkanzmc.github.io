@@ -36,3 +36,10 @@ entries:
       - title: software architecture
       - title: compact split mechanical keyboards
       - title: 3d printed keyboards
+
+  - title: talks
+    entries:
+      - title: VimConf 2021 - Buffer is King
+        url: https://www.youtube.com/watch?v=rD2eyB9oMqQ
+      - title: Qt Virtual Tech Con 2020
+        url: https://resources.qt.io/development-topic-ui-design/community-driven-qml-coding-guidelines-12th-may-1-pm-pst-10-pm-cest-4-am-cst
