@@ -25,6 +25,8 @@ remote_theme: Furkanzmc/furkanzmc.github.io
 theme_config:
   # can be "light", "dark" or "auto"
   appearance: "auto"
+  # can be "left" or "center"
+  alignment: "center"
   # customize text for homepage link in post layout
   back_home_text: "*CTRL-O*"
   footer: "vim: ft=blog textwidth=80 copyright=yes"

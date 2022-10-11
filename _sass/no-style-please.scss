@@ -217,7 +217,7 @@ code {
 
 .site-body {
   max-width: 81ch;
-  margin: 0;
+  margin: auto;
   padding: 0.4rem 1rem;
 }
 
@@ -239,7 +239,7 @@ code {
   }
 }
 
-.theme-toggle {
+.option-toggle {
   border: none;
   background: none;
   cursor: pointer;
@@ -251,7 +251,7 @@ code {
 }
 
 @media screen and (min-width: 40.5em) {
-  .theme-toggle {
+  .option-toggle {
     font-size: 12px;
   }
 }
