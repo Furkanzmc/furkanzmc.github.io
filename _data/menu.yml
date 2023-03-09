@@ -39,11 +39,13 @@ entries:
 
   - title: talks
     entries:
-      - title: VimConf 2021 - Buffer is King
+      - title: Buffer is King | VimConf 2021
         url: https://www.youtube.com/watch?v=rD2eyB9oMqQ
-      - title: Qt Virtual Tech Con 2020
+      - title: Community Driven QML Coding Guidelines | Qt Virtual Tech Con 2020
         url: https://resources.qt.io/development-topic-ui-design/community-driven-qml-coding-guidelines-12th-may-1-pm-pst-10-pm-cest-4-am-cst
-      - title: Community Driven Coding Guidelines
+      - title: Community Driven Coding Guidelines | QtDevCon 2022
         url: https://youtu.be/g6Nj6Cc3jig
-      - title: Community Driven Coding Guidelines - Slides
+      - title: Community Driven Coding Guidelines | QtDevCon 2022 - Slides
         url: https://zmc.space/qtdevcon-community-driven-coding-guidelines/
+      - title: How Not to Design Reusable Components in QML | QtWS22
+        url: https://www.youtube.com/watch?v=yYCYPcbgXSs
