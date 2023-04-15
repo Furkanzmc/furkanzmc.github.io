@@ -4,9 +4,6 @@ layout: default
 
 {%-include back_link.html-%}
 
-<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
 <article>
   <p class="post-meta">
     <span class="category">
@@ -23,4 +20,18 @@ layout: default
   {{ content }}
 </article>
 
-<div id="gitalk-container"></div>
+<script src="https://giscus.app/client.js"
+        data-repo="Furkanzmc/furkanzmc.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk0ODc5ODgwOA=="
+        data-category="Blog Comments"
+        data-category-id="DIC_kwDOAuicWM4CU1Oa"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
