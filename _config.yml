@@ -9,14 +9,13 @@ email: zmc@duck.com
 url: https://zmc.space
 # subpath of the site, e.g. "/blog"
 # (leave it blank "" if you're site shouldn't use a subpath)
-baseurl: ""
+baseurl: ''
 # description of the site (multiple lines allowed)
 description: >
   my personal blog
 permalink: /:slug.html
-
 # name+extension of favicon (which must be put on the root folder)
-favicon: "logo.png"
+favicon: 'logo.png'
 # put your GoatCounter name if you want to use GoatCounter analytics
 # goat_counter: "yoursitename"
 
@@ -24,14 +23,14 @@ remote_theme: Furkanzmc/furkanzmc.github.io
 
 theme_config:
   # can be "light", "dark" or "auto"
-  appearance: "auto"
+  appearance: 'auto'
   # can be "left" or "center"
-  alignment: "center"
+  alignment: 'center'
   # customize text for homepage link in post layout
-  back_home_text: "*CTRL-O*"
-  footer: "vim: ft=blog textwidth=80 copyright=yes"
+  back_home_text: '*CTRL-O*'
+  footer: 'vim: ft=blog textwidth=80 copyright=yes'
   # customize how date is formatted
-  date_format: "%d/%m/%Y"
+  date_format: '%d/%m/%Y'
   # show blog description in home page
   show_description: true
 

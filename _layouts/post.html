@@ -5,33 +5,37 @@ layout: default
 {%-include back_link.html-%}
 
 <article>
-  <p class="post-meta">
-    <span class="category">
-        {% for category in page.category %} #{{ category | downcase }} {% endfor %}
-    </span>
-  </p>
+    <p class="post-meta">
+        <span class="category">
+            {% for category in page.category %} #{{ category | downcase }} {%
+            endfor %}
+        </span>
+    </p>
 
-  <p class="post-meta post-list-date">
-    <time datetime="{{ page.date }}">{{ page.date | date: site.theme_config.date_format }}</time>
-  </p>
+    <p class="post-meta post-list-date">
+        <time datetime="{{ page.date }}"
+            >{{ page.date | date: site.theme_config.date_format }}</time
+        >
+    </p>
 
-  <h1>{{ page.title }}</h1>
+    <h1>{{ page.title }}</h1>
 
-  {{ content }}
+    {{ content }}
 </article>
 
-<script src="https://giscus.app/client.js"
-        data-repo="Furkanzmc/furkanzmc.github.io"
-        data-repo-id="MDEwOlJlcG9zaXRvcnk0ODc5ODgwOA=="
-        data-category="Blog Comments"
-        data-category-id="DIC_kwDOAuicWM4CU1Oa"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="preferred_color_scheme"
-        data-lang="en"
-        crossorigin="anonymous"
-        async>
-</script>
+<script
+    src="https://giscus.app/client.js"
+    data-repo="Furkanzmc/furkanzmc.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnk0ODc5ODgwOA=="
+    data-category="Blog Comments"
+    data-category-id="DIC_kwDOAuicWM4CU1Oa"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="en"
+    crossorigin="anonymous"
+    async
+></script>
