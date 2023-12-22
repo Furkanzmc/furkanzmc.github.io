@@ -48,3 +48,5 @@ entries:
         url: https://zmc.space/qtdevcon-community-driven-coding-guidelines/
       - title: How Not to Design Reusable Components in QML | QtWS22
         url: https://www.youtube.com/watch?v=yYCYPcbgXSs
+      - title: Porting a Large Scale Non-Qt Legacy CAD Application to Qt/QML The Good, The Bad, and The Ugly | QtWS23
+        url: https://www.youtube.com/watch?v=7Omr6hlxEhY
