@@ -60,3 +60,7 @@ entries:
         url: https://www.qt.io/blog/qt-meetup-community-events-in-toronto-and-detroit
       - title: The Shoulders We Stand On | CppNorth 2024
         url: https://www.youtube.com/watch?v=zba0qXSLMaI
+      - title: The Great Migration - Transferring Millions of Data Objects to QML with Speed and Comfort | Qt World Summit 2025
+        url: https://www.qt.io/qt-world-summit-2025/speakers/furkan-uzumcu
+      - title: The Great Migration - Transferring Millions of Data Objects to QML with Speed and Comfort | Qt World Summit 2025 - Slides
+        url: https://zmc.space/qtws-2025-great-migration/
