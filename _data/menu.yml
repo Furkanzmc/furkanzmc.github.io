@@ -7,6 +7,8 @@ entries:
     entries:
       - title: email
         url: mailto:zmc@duck.com
+      - title: linkedin
+        url: https://www.linkedin.com/in/furkanzmc/
       - title: github
         url: https://github.com/Furkanzmc
       - title: twitter
